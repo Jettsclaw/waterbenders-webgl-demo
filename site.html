@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>Waterbenders — The Power of Clean™</title>
+<meta name="description" content="Low-pressure soft wash for Gold Coast luxury exteriors — tiles intact, warranty intact, clean for months. On the day we book, or we come back free."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#0b1c3a;--navy2:#0a1730;--blue:#0689F2;--aqua:#36c6e6;--paper:#F6F8FC;--mut:#9fb0cc;--line:rgba(255,255,255,.1)}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{background:#06101f;color:var(--paper);font-family:"Lato",system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}::selection{background:rgba(54,198,230,.35)}
+  h1,h2,h3,.dwm,.k,.bigwm,.scard h4,.srow h4,.pf .v{font-family:"Montserrat",system-ui,sans-serif}
+  body{background:radial-gradient(130% 90% at 50% -10%,rgba(11,28,58,.9),transparent 60%),#06101f}
+  #scene{position:fixed;inset:0;width:100vw;height:100dvh;z-index:0;display:block}
+  .edge{position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(135% 110% at 50% 42%,transparent 50%,rgba(6,16,31,.92) 100%)}
+
+  nav{position:fixed;top:0;left:0;right:0;z-index:40;display:flex;align-items:center;justify-content:space-between;padding:18px clamp(20px,4vw,56px);transition:background .4s,border-color .4s;border-bottom:1px solid transparent}
+  nav.solid{background:rgba(8,16,31,.74);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+  .dwm{font-weight:800;font-size:16px;letter-spacing:.16em;text-transform:uppercase}.dwm small{display:block;font-family:"Lato";font-weight:400;font-size:9px;letter-spacing:.26em;color:var(--aqua);margin-top:2px;text-transform:none}
+  .nlinks{display:flex;gap:24px;font-size:13px;font-weight:500;align-items:center}.nlinks a{color:#cdd8ee}.nlinks a:hover{color:#fff}
+  .navcta{padding:11px 19px;border-radius:2px;background:var(--blue);color:#fff;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;transition:.25s}.navcta:hover{background:#1f9bff;transform:translateY(-2px)}
+  .burger{display:none;flex-direction:column;gap:5px;cursor:pointer}.burger span{width:22px;height:2px;background:#fff;border-radius:2px;transition:.3s}
+  .burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}.burger.open span:nth-child(2){opacity:0}.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  .mm{display:none}
+
+  main{position:relative;z-index:3}
+  section{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:0 clamp(22px,7vw,150px);position:relative}
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}.reveal.in{opacity:1;transform:none}
+  .k{font-size:11.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--aqua);font-weight:600;margin-bottom:20px;display:inline-flex;align-items:center;gap:11px}.k::before{content:"";width:26px;height:1px;background:var(--aqua)}
+  h1,h2{text-shadow:0 3px 50px rgba(6,16,31,.95)}.sub,p,.srow span{text-shadow:0 2px 26px rgba(6,16,31,.95)}
+  .b{color:var(--aqua)}.dim{color:#73809e}
+  h2{font-size:clamp(32px,5.4vw,80px);font-weight:800;letter-spacing:-.02em;line-height:.98;max-width:18ch}
+  .sub{margin-top:24px;font-size:clamp(16px,1.8vw,21px);line-height:1.6;max-width:44ch;color:#dbe3f2;font-weight:300}
+  .btn{display:inline-flex;align-items:center;gap:9px;padding:15px 30px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;font-family:"Montserrat";transition:.25s}
+  .btn.solid{background:var(--blue);color:#fff;box-shadow:0 12px 40px -10px rgba(6,137,242,.8)}.btn.solid:hover{background:#1f9bff;transform:translateY(-2px)}
+  .btn.ghost{border:1px solid rgba(246,248,252,.3);color:#fff}.btn.ghost:hover{border-color:#fff}
+  .ctarow{margin-top:34px;display:flex;gap:15px;flex-wrap:wrap;align-items:center}
+  .micro{margin-top:22px;font-size:12px;letter-spacing:.06em;color:var(--mut);text-transform:uppercase}
+
+  /* hero */
+  .hero{min-height:108vh;align-items:center;text-align:center;justify-content:flex-end;padding-bottom:14vh}
+  .hero .lock{display:flex;flex-direction:column;align-items:center;gap:14px}
+  .hero .bigwm{font-weight:800;letter-spacing:.22em;font-size:clamp(28px,5.4vw,64px);line-height:1;text-shadow:0 4px 50px rgba(6,16,31,.95)}
+  .hero .tagline{font-weight:400;letter-spacing:.36em;text-transform:uppercase;font-size:clamp(10px,1.3vw,14px);color:#cfe0f5}
+  .scrollcue{position:fixed;bottom:26px;left:50%;transform:translateX(-50%);z-index:5;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--mut);opacity:.8}
+
+  /* standard cards */
+  .std{display:grid;grid-template-columns:repeat(5,1fr);gap:11px;margin-top:40px;max-width:1080px}
+  .scard{padding:24px 18px;border-radius:5px;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.015));border:1px solid var(--line);border-top:2px solid var(--aqua);backdrop-filter:blur(10px)}
+  .scard .n{font-size:11px;font-weight:700;color:var(--aqua)}.scard h4{margin-top:10px;font-size:15px;font-weight:700}.scard p{margin-top:8px;font-size:12.5px;line-height:1.5;color:var(--mut)}
+
+  /* services with per-row light signature */
+  .svcs{margin-top:34px;max-width:880px}
+  .svc{position:relative;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:26px 26px;border-bottom:1px solid var(--line);overflow:hidden;transition:background .4s}
+  .svc:first-child{border-top:1px solid var(--line)}
+  .svc h4{font-size:clamp(20px,2.6vw,32px);font-weight:600;font-family:"Montserrat";letter-spacing:-.01em;position:relative;z-index:2}
+  .svc span{font-size:13px;color:var(--mut);max-width:30ch;text-align:right;position:relative;z-index:2}
+  .svc::before{content:"";position:absolute;inset:0;z-index:1;opacity:0;transition:opacity .5s}
+  .svc:hover{background:rgba(255,255,255,.02)}
+  /* signatures */
+  .svc.solar::before{background:radial-gradient(120% 180% at 12% 50%,rgba(255,196,84,.28),transparent 55%);}
+  .svc.solar:hover::before{opacity:1}
+  .svc.windows::before{background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.22) 48%,transparent 60%);transform:translateX(-30%);transition:opacity .5s,transform .9s}
+  .svc.windows:hover::before{opacity:1;transform:translateX(30%)}
+  .svc.pressure::before{background:radial-gradient(120% 180% at 10% 50%,rgba(54,198,230,.26),transparent 55%)}.svc.pressure:hover::before{opacity:1}
+  .svc.house::before{background:radial-gradient(120% 180% at 10% 50%,rgba(6,137,242,.24),transparent 55%)}.svc.house:hover::before{opacity:1}
+  .svc.rejuv::before{background:radial-gradient(120% 180% at 12% 50%,rgba(120,210,255,.22),transparent 55%)}.svc.rejuv:hover::before{opacity:1}
+
+  /* proof */
+  .proofstrip{display:flex;gap:50px;flex-wrap:wrap;margin-top:30px}
+  .pf .v{font-size:clamp(34px,4.4vw,60px);font-weight:800;letter-spacing:-.02em;background:linear-gradient(180deg,#fff,var(--aqua));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .pf .l{margin-top:5px;font-size:12.5px;color:var(--mut);max-width:20ch;line-height:1.4}
+  .trust{margin-top:30px;font-size:13px;letter-spacing:.04em;color:#cdd5e8;text-transform:uppercase}.trust b{color:var(--aqua)}
+  /* about principles */
+  .princ{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:36px;max-width:1000px}
+  .pc{padding:26px 22px;border-radius:6px;border:1px solid var(--line);background:rgba(255,255,255,.025)}.pc h4{font-size:17px;font-weight:600;font-family:"Montserrat"}.pc p{margin-top:9px;font-size:13.5px;color:var(--mut);line-height:1.55}
+  .end{align-items:center;text-align:center;min-height:106vh;justify-content:center}.end h2{max-width:15ch}
+  .contactline{margin-top:26px;font-size:14px;color:#dbe3f2;display:flex;gap:24px;flex-wrap:wrap;justify-content:center}.contactline a:hover{color:var(--aqua)}
+  footer{position:relative;z-index:3;padding:52px clamp(22px,7vw,150px) 44px;border-top:1px solid var(--line);background:rgba(6,16,31,.7);backdrop-filter:blur(10px)}
+  .fgrid{display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px}.fbot{margin-top:30px;font-size:12px;color:#647195;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+  @media(max-width:860px){.nlinks a:not(.navcta){display:none}.std{grid-template-columns:1fr 1fr}.princ{grid-template-columns:1fr}.svc{flex-direction:column;align-items:flex-start;gap:6px}.svc span{text-align:left}}
+</style>
+</head>
+<body>
+  <canvas id="scene"></canvas><div class="edge"></div>
+
+  <nav id="nav">
+    <div class="dwm">Waterbenders<small>The Power of Clean™</small></div>
+    <div class="nlinks"><a href="#method">Method</a><a href="#standard">The Standard</a><a href="#services">Services</a><a href="#proof">Royal Albert</a><a href="tel:1300396576">1300 396 576</a><a class="navcta" href="#book">Book an assessment</a></div>
+    <div class="burger" id="burger"><span></span><span></span><span></span></div>
+  </nav>
+  <div class="mm" id="mm"><a href="#method">Method</a><a href="#standard">The Standard</a><a href="#services">Services</a><a href="#proof">Royal Albert</a><a href="#book">Book an assessment</a><a href="tel:1300396576">1300 396 576</a></div>
+
+  <main>
+    <section class="hero">
+      <div class="lock reveal"><div class="bigwm">WATER&nbsp;BENDERS</div><div class="tagline">The Power of Clean™</div></div>
+    </section>
+
+    <section id="method">
+      <span class="k reveal">The method</span>
+      <h2 class="reveal" style="font-size:clamp(40px,7vw,120px);font-weight:800">Soft washed.<br><span class="b">Never blasted.</span></h2>
+      <p class="sub reveal">A low-pressure soft wash that kills mould and lichen at the root — tiles intact, warranty intact, clean for months not weeks. On the day we book, finished in one visit, or we come back free.</p>
+      <div class="ctarow reveal"><a class="btn solid" href="#book">Book your Standard Assessment</a><a class="btn ghost" href="#proof">The Royal Albert Standard</a></div>
+      <div class="micro reveal">Gold Coast &amp; Brisbane luxury exteriors · by introduction · zero unsatisfied clients</div>
+    </section>
+
+    <section id="standard">
+      <span class="k reveal">The Waterbenders Standard</span>
+      <h2 class="reveal">Five promises. In writing.</h2>
+      <div class="std">
+        <div class="scard reveal"><div class="n">01</div><h4>Flawless Finish</h4><p>Every surface in scope, to one standard — or we put it right.</p></div>
+        <div class="scard reveal"><div class="n">02</div><h4>No-Damage Promise</h4><p>Low pressure. No cracked tiles, no voided warranty, no water in the cavity.</p></div>
+        <div class="scard reveal"><div class="n">03</div><h4>Turn-Up Guarantee</h4><p>On the day we book, finished in one visit — or we come back free.</p></div>
+        <div class="scard reveal"><div class="n">04</div><h4>Cleaner for Longer</h4><p>Root-kill soft wash holds for months. You'll see it at day sixty.</p></div>
+        <div class="scard reveal"><div class="n">05</div><h4>Transferable Standard</h4><p>The result carries to the next owner — a lever no rival offers.</p></div>
+      </div>
+    </section>
+
+    <section id="services">
+      <span class="k reveal">One call. Every surface.</span>
+      <h2 class="reveal">Done right.<br>No follow-up needed.</h2>
+      <div class="svcs">
+        <div class="svc pressure reveal"><h4>Pressure &amp; soft washing</h4><span>Driveways, render and stone — lifted, not stripped.</span></div>
+        <div class="svc house reveal"><h4>House &amp; building washing</h4><span>Full exterior soft wash, root-kill biocide, salt-air ready.</span></div>
+        <div class="svc windows reveal"><h4>Windows, inside and out</h4><span>Streak-free glass, tracks and frames included.</span></div>
+        <div class="svc solar reveal"><h4>Solar panel cleaning</h4><span>Salt film removed — recovered output you can read on the meter.</span></div>
+        <div class="svc rejuv reveal"><h4>Full property rejuvenations</h4><span>Whole-exterior restoration, scoped and finished in one engagement.</span></div>
+      </div>
+      <div class="micro reveal" style="margin-top:26px">Hover a service — each one cleans a little differently.</div>
+    </section>
+
+    <section id="proof">
+      <span class="k reveal">The Royal Albert Standard</span>
+      <h2 class="reveal">762m². Three days.<br>Vendor-ready.</h2>
+      <p class="sub reveal">A Sovereign Islands waterfront home, full exterior, taken to listing-ready in three days. One reference that lets an owner see their own property in the result.</p>
+      <div class="proofstrip reveal">
+        <div class="pf"><div class="v">762m²</div><div class="l">Full exterior, one scope.</div></div>
+        <div class="pf"><div class="v">3 days</div><div class="l">Booked to vendor-ready.</div></div>
+        <div class="pf"><div class="v">$350K</div><div class="l">Annual revenue on zero advertising.</div></div>
+      </div>
+      <div class="trust reveal"><b>Zero</b> unsatisfied clients · Family-operated · By introduction</div>
+    </section>
+
+    <section id="about">
+      <span class="k reveal">Who we are</span>
+      <h2 class="reveal">Family-run. <span class="b">By introduction.</span></h2>
+      <div class="princ">
+        <div class="pc reveal"><h4>We don't take every job</h4><p>We work by introduction across the Gold Coast and Brisbane, so the standard never slips.</p></div>
+        <div class="pc reveal"><h4>The method is the guarantee</h4><p>Low-pressure soft wash, every time — the safety isn't a claim, it's how we work.</p></div>
+        <div class="pc reveal"><h4>One call, then nothing</h4><p>You hand over the keys and expect perfection. No follow-up, no chasing, no surprises.</p></div>
+      </div>
+    </section>
+
+    <section class="end" id="book">
+      <span class="k reveal" style="justify-content:center">By introduction</span>
+      <h2 class="reveal" style="margin:0 auto">Hand over the keys.<br>Expect <span class="b">perfection</span>.</h2>
+      <p class="sub reveal" style="margin-left:auto;margin-right:auto">Book a free on-site Standard Assessment. We walk the property, scope every surface, and send a single fixed proposal — no pressure, no follow-up needed.</p>
+      <div class="ctarow reveal" style="justify-content:center"><a class="btn solid" href="mailto:management@waterbenders.com.au?subject=Standard%20Assessment%20request">Book your Standard Assessment</a><a class="btn ghost" href="tel:1300396576">Call 1300 396 576</a></div>
+      <div class="contactline reveal"><a href="mailto:management@waterbenders.com.au">management@waterbenders.com.au</a><span>·</span><span>Gold Coast &amp; Brisbane</span></div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="fgrid">
+      <div><div class="dwm" style="font-size:16px">Waterbenders<small>The Power of Clean™</small></div>
+        <p style="margin-top:13px;color:var(--mut);font-size:14px;max-width:32ch;line-height:1.55;font-weight:300">One call. Every surface. Done right. No follow-up needed.</p></div>
+      <div style="display:flex;flex-direction:column;gap:8px;font-size:14px;color:var(--mut)">
+        <a href="tel:1300396576">1300 396 576</a><a href="mailto:management@waterbenders.com.au">management@waterbenders.com.au</a><span>Gold Coast &amp; Brisbane, Australia</span></div>
+    </div>
+    <div class="fbot"><span>© 2026 Water Benders Pty Ltd</span><span>The Power of Clean™</span></div>
+  </footer>
+  <div class="scrollcue" id="cue">scroll</div>
+
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script type="module">
+    import * as THREE from 'three';
+    import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+    import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+    import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+    const renderer=new THREE.WebGLRenderer({canvas:document.getElementById('scene'),antialias:true,alpha:true});
+    renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(innerWidth,innerHeight);
+    const scene=new THREE.Scene();const camera=new THREE.PerspectiveCamera(60,innerWidth/innerHeight,0.1,1400);camera.position.set(0,0,98);
+    const AQUA=new THREE.Color(0x36c6e6),BLUE=new THREE.Color(0x0689F2),WHITE=new THREE.Color(0xdff3ff);
+    const COUNT=9000;const seeds=new Float32Array(COUNT),sizes=new Float32Array(COUNT),bright=new Float32Array(COUNT);
+    for(let i=0;i<COUNT;i++){seeds[i]=Math.random();sizes[i]=0.5+Math.random()*Math.random()*3.2;bright[i]=0.3+Math.pow(Math.random(),2.0)*1.6;}
+    const T_MARK=new Float32Array(COUNT*3),T_STREAM=new Float32Array(COUNT*3),T_FIELD=new Float32Array(COUNT*3),T_SPRAY=new Float32Array(COUNT*3),T_CONV=new Float32Array(COUNT*3);
+    for(let i=0;i<COUNT;i++){
+      // FIELD: wide calm dispersed water cloud
+      const a=Math.random()*Math.PI*2,r=Math.pow(Math.random(),1.6)*78,z=(Math.random()*2-1)*120;
+      T_FIELD[i*3]=Math.cos(a)*r;T_FIELD[i*3+1]=Math.sin(a)*r*0.4;T_FIELD[i*3+2]=z;
+      // STREAM: horizontal flowing band
+      const x=-70+Math.random()*140;T_STREAM[i*3]=x;T_STREAM[i*3+1]=Math.sin(x*0.1+Math.random())*6+(Math.random()-0.5)*5;T_STREAM[i*3+2]=(Math.random()-0.5)*22;
+      // SPRAY: fan arc from lower-left
+      const t=Math.random();const ang=(-0.5+t*1.0); const rad=t*120;
+      T_SPRAY[i*3]=-50+Math.cos(ang)*rad;T_SPRAY[i*3+1]=-30+Math.sin(ang)*rad+(Math.random()-0.5)*8;T_SPRAY[i*3+2]=(Math.random()-0.5)*18;
+      // CONV: bright droplet core
+      const cu=Math.random()*2-1,cth=Math.random()*Math.PI*2,cr=Math.pow(Math.random(),0.6)*12;
+      T_CONV[i*3]=Math.sqrt(1-cu*cu)*Math.cos(cth)*cr;T_CONV[i*3+1]=Math.sqrt(1-cu*cu)*Math.sin(cth)*cr;T_CONV[i*3+2]=cu*cr;
+    }
+    T_MARK.set(T_FIELD);
+    // sample the Waterbenders mark
+    const MARK=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="54 217 779 700"> <path class="cls-1" d="M832.5,473.83a142.39,142.39,0,0,0-.27-14.47c-2.07-20.32-15.57-34-36-34.69-24.61-.78-49.28-.81-73.88,0-21.82.73-35.4,15.63-36,37.39-.11,4.34,0,8.69,0,13,0,127.4,0,36.11,0,163.51,0,5.79.32,11.62-.2,17.37-3.19,35.34-20.83,61-53.68,74.41-32.49,13.28-62.62,6.92-88.79-16.2-20-17.72-28.2-40.84-28.16-67.23q.07-60.81,0-121.61c0-21.24.38-42.48-.18-63.7-.6-22.15-14.65-36-36.65-36.34q-36.21-.58-72.43,0c-21.11.38-35.14,14.52-36.13,35.46-.23,4.82-.11,9.65-.11,14.48,0,58.88.28,117.75-.12,176.63-.28,40.34-29.49,75.57-67.76,83.09-40.83,8-81.23-13-96.16-51.62-4.4-11.4-6.41-24.37-6.55-36.65-.66-58.38-1.31-116.8.09-175.16.81-33.84-18.53-48.52-46.17-46.65-19.71,1.34-39.58.14-59.38.3-26.54.21-40.05,13.59-40.11,40.18q-.21,95.55,0,191.1c.08,39,10.49,75.3,29.7,109.06,45.07,79.23,135.7,130.12,237.85,114.09A225.39,225.39,0,0,0,418.23,840c12.35-8.77,25.23-11.93,39.4-5.59,4.78,2.14,9.1,5.4,13.49,8.36,109.68,74.2,258.6,41.75,327.44-71.31C822,732.9,832.45,690.87,832.49,646"/> <path class="cls-1" d="M832.49,646c0,44.84-10.45,86.87-33.93,125.44C729.72,884.53,580.8,917,471.12,842.78c-4.39-3-8.71-6.22-13.49-8.36-14.17-6.34-27.05-3.18-39.4,5.59a225.39,225.39,0,0,1-96.85,39.63c-102.15,16-192.78-34.86-237.85-114.09-19.21-33.76-29.62-70.07-29.7-109.06q-.16-95.55,0-191.1c.06-26.59,13.57-40,40.11-40.18,19.8-.16,39.67,1,59.38-.3,27.64-1.87,47,12.81,46.17,46.65-1.4,58.36-.75,116.78-.09,175.16.14,12.28,2.15,25.25,6.55,36.65C220.89,722,261.29,743,302.12,735c38.27-7.52,67.48-42.75,67.76-83.09.4-58.88.11-117.75.12-176.63,0-4.83-.12-9.66.11-14.48,1-20.94,15-35.08,36.13-35.46q36.19-.66,72.43,0c22,.35,36.05,14.19,36.65,36.34.56,21.22.17,42.46.18,63.7q0,60.79,0,121.61c0,26.39,8.11,49.51,28.16,67.23,26.17,23.12,56.3,29.48,88.79,16.2C665.31,717,683,691.32,686.14,656c.52-5.75.2-11.58.2-17.37,0-127.4,0-36.11,0-163.51,0-4.34-.08-8.69,0-13,.56-21.76,14.14-36.66,36-37.39,24.6-.82,49.27-.79,73.88,0,20.44.66,33.94,14.37,36,34.69a142.39,142.39,0,0,1,.27,14.47"/> <path class="cls-1" d="M103.5,217.34a142.33,142.33,0,0,0-14.47.27c-20.33,2.07-34,15.57-34.69,36-.79,24.6-.82,49.27,0,73.88.73,21.82,15.64,35.4,37.4,36,4.34.11,8.68,0,13,0"/> <path class="cls-1" d="M149.19,363.47a142.19,142.19,0,0,0,14.46-.27c20.33-2.07,34-15.57,34.69-36,.79-24.61.82-49.28,0-73.88-.73-21.82-15.63-35.4-37.39-36-4.34-.11-8.69,0-13,0"/> <path class="cls-1" d="M104.77,363.49c-4.35,0-8.69.08-13,0-21.76-.56-36.67-14.14-37.4-36-.82-24.61-.79-49.28,0-73.88.66-20.44,14.36-33.94,34.69-36a142.33,142.33,0,0,1,14.47-.27l44.42,0c4.34,0,8.69-.07,13,0,21.76.56,36.66,14.14,37.39,36,.82,24.6.79,49.27,0,73.88-.65,20.44-14.36,33.94-34.69,36a142.19,142.19,0,0,1-14.46.27Z"/> <path class="cls-1" d="M419.8,217.34a142.33,142.33,0,0,0-14.47.27c-20.32,2.07-34,15.57-34.69,36-.78,24.6-.82,49.27,0,73.88.72,21.82,15.63,35.4,37.39,36,4.34.11,8.69,0,13,0"/> <path class="cls-1" d="M465.49,363.47A142.39,142.39,0,0,0,480,363.2c20.32-2.07,34-15.57,34.68-36,.79-24.61.82-49.28,0-73.88-.73-21.82-15.63-35.4-37.39-36-4.34-.11-8.69,0-13,0"/> <path class="cls-1" d="M421.07,363.49c-4.34,0-8.69.08-13,0-21.76-.56-36.67-14.14-37.39-36-.83-24.61-.79-49.28,0-73.88.66-20.44,14.37-33.94,34.69-36a142.33,142.33,0,0,1,14.47-.27l44.42,0c4.34,0,8.69-.07,13,0,21.76.56,36.66,14.14,37.39,36,.82,24.6.79,49.27,0,73.88-.65,20.44-14.36,33.94-34.68,36a142.39,142.39,0,0,1-14.47.27Z"/> <path class="cls-1" d="M736.49,217.34a142.33,142.33,0,0,0-14.47.27c-20.33,2.07-34,15.57-34.69,36-.78,24.6-.82,49.27,0,73.88.72,21.82,15.63,35.4,37.39,36,4.34.11,8.69,0,13,0"/> <path class="cls-1" d="M782.18,363.47a142.39,142.39,0,0,0,14.47-.27c20.32-2.07,34-15.57,34.68-36,.79-24.61.82-49.28,0-73.88-.73-21.82-15.63-35.4-37.39-36-4.34-.11-8.69,0-13,0"/> <path class="cls-1" d="M737.76,363.49c-4.34,0-8.69.08-13,0-21.76-.56-36.67-14.14-37.39-36-.83-24.61-.79-49.28,0-73.88.66-20.44,14.36-33.94,34.69-36a142.33,142.33,0,0,1,14.47-.27l44.42,0c4.34,0,8.69-.07,13,0,21.76.56,36.66,14.14,37.39,36,.82,24.6.79,49.27,0,73.88-.65,20.44-14.36,33.94-34.68,36a142.39,142.39,0,0,1-14.47.27Z"/> </svg>`;
+    const img=new Image();
+    img.onload=()=>{const S=320,cv=document.createElement('canvas');cv.width=S;cv.height=S;const ctx=cv.getContext('2d');ctx.drawImage(img,0,0,S,S);
+      const d=ctx.getImageData(0,0,S,S).data,pts=[];for(let y=0;y<S;y+=2)for(let x=0;x<S;x+=2)if(d[(y*S+x)*4+3]>110)pts.push([x,y]);
+      if(pts.length){for(let k=pts.length-1;k>0;k--){const j=(Math.random()*(k+1))|0;[pts[k],pts[j]]=[pts[j],pts[k]];}
+      const fit=innerWidth<760?64:104;for(let i=0;i<COUNT;i++){const p=pts[i%pts.length];T_MARK[i*3]=(p[0]/S-0.5)*fit+(Math.random()-0.5)*0.7;T_MARK[i*3+1]=-(p[1]/S-0.5)*fit+(Math.random()-0.5)*0.7;T_MARK[i*3+2]=(Math.random()-0.5)*7;}}};
+    img.src='data:image/svg+xml;utf8,'+encodeURIComponent(MARK);
+
+    const STAGES=[T_MARK,T_STREAM,T_FIELD,T_SPRAY,T_CONV,T_MARK];
+    const ANCHORS=[['.hero',0],['#method',1],['#standard',2],['#services',3],['#proof',4],['#about',4],['#book',5]];
+    let ANCH=[];function measure(){const mx=document.documentElement.scrollHeight-innerHeight;const sc=(window.__lenis&&window.__lenis.scroll)||0;ANCH=ANCHORS.map(([s,m])=>{const el=document.querySelector(s);if(!el)return null;const r=el.getBoundingClientRect();return{f:mx>0?(r.top+sc+r.height/2-innerHeight/2)/mx:0,m};}).filter(Boolean).sort((a,b)=>a.f-b.f);}
+    function morph(s){if(!ANCH.length)return 0;if(s<=ANCH[0].f)return ANCH[0].m;for(let i=0;i<ANCH.length-1;i++){const a=ANCH[i],b=ANCH[i+1];if(s<=b.f){const f=(s-a.f)/Math.max(b.f-a.f,1e-4);return a.m+(b.m-a.m)*(f*f*(3-2*f));}}return ANCH[ANCH.length-1].m;}
+    const geo=new THREE.BufferGeometry();const pos=new Float32Array(COUNT*3);pos.set(T_FIELD);
+    geo.setAttribute('position',new THREE.BufferAttribute(pos,3));geo.setAttribute('aSeed',new THREE.BufferAttribute(seeds,1));geo.setAttribute('aSize',new THREE.BufferAttribute(sizes,1));geo.setAttribute('aBright',new THREE.BufferAttribute(bright,1));
+    const posAttr=geo.attributes.position;
+    const U={uTime:{value:0},uPixel:{value:Math.min(devicePixelRatio,2)},uAqua:{value:AQUA},uWhite:{value:WHITE},uGlow:{value:0}};
+    const mat=new THREE.ShaderMaterial({uniforms:U,transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,
+      vertexShader:`attribute float aSeed;attribute float aSize;attribute float aBright;uniform float uTime;uniform float uPixel;varying float vB;void main(){vec4 mv=modelViewMatrix*vec4(position,1.0);float dist=-mv.z;float tw=0.6+0.4*sin(uTime*1.7+aSeed*28.0);vB=aBright*tw;float size=aSize*(330.0/dist)*uPixel;gl_PointSize=clamp(size,0.0,58.0);gl_Position=projectionMatrix*mv;}`,
+      fragmentShader:`precision highp float;uniform vec3 uAqua;uniform vec3 uWhite;uniform float uGlow;varying float vB;void main(){vec2 uv=gl_PointCoord-0.5;float d=length(uv);if(d>0.5)discard;float soft=pow(smoothstep(0.5,0.0,d),2.0);vec3 col=mix(uAqua,uWhite,clamp(vB-0.7,0.0,1.0));gl_FragColor=vec4(col*vB*(1.0+uGlow),soft*0.92);}`});
+    scene.add(new THREE.Points(geo,mat));
+    const composer=new EffectComposer(renderer);composer.addPass(new RenderPass(scene,camera));const bloom=new UnrealBloomPass(new THREE.Vector2(innerWidth,innerHeight),1.25,0.8,0.0);composer.addPass(bloom);
+    const lenis=new Lenis({lerp:0.085,smoothWheel:true});window.__lenis=lenis;let scrollP=0,rawVel=0;
+    lenis.on('scroll',e=>{const mx=document.documentElement.scrollHeight-innerHeight;scrollP=mx>0?e.scroll/mx:0;rawVel=e.velocity||0;document.getElementById('nav').classList.toggle('solid',(e.scroll||0)>40);document.getElementById('cue').style.opacity=(e.scroll||0)>60?0:0.8;});
+    function rl(t){lenis.raf(t);requestAnimationFrame(rl);}requestAnimationFrame(rl);
+    let tpx=0,tpy=0,px=0,py=0;addEventListener('pointermove',e=>{tpx=e.clientX/innerWidth-0.5;tpy=e.clientY/innerHeight-0.5;});
+    const clock=new THREE.Clock();let vS=0,curM=0;
+    function animate(){const dt=Math.min(clock.getDelta(),0.05);U.uTime.value+=dt;vS+=(Math.min(Math.abs(rawVel)*0.05,2.0)-vS)*0.06;const tgt=morph(scrollP);curM+=(tgt-curM)*0.08;
+      const s=Math.min(Math.floor(curM),STAGES.length-2),f=curM-s,e=f*f*(3-2*f);const A=STAGES[s],B=STAGES[s+1],turb=Math.sin(Math.PI*f),tb=turb*7.0,t=U.uTime.value,sw=turb>0.02;
+      for(let i=0;i<COUNT;i++){const ix=i*3,iy=ix+1,iz=ix+2;let x=A[ix]+(B[ix]-A[ix])*e,y=A[iy]+(B[iy]-A[iy])*e,z=A[iz]+(B[iz]-A[iz])*e;if(sw){const sd=seeds[i]*30.0;x+=Math.sin(t*0.9+sd)*tb*0.5;y+=Math.cos(t*0.8+sd*1.1)*tb*0.5;z+=Math.sin(t*0.7+sd*0.9)*tb;}pos[ix]=x;pos[iy]=y;pos[iz]=z;}
+      posAttr.needsUpdate=true;U.uGlow.value=Math.max(0,(curM-3.5))*0.4+vS*0.15;
+      px+=(tpx-px)*0.05;py+=(tpy-py)*0.05;camera.position.x+=(px*14-camera.position.x)*0.05;camera.position.y+=(-py*9-camera.position.y)*0.05;camera.lookAt(0,0,0);
+      bloom.strength=1.15+vS*0.25+U.uGlow.value*0.7;composer.render();requestAnimationFrame(animate);}
+    animate();
+    addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);composer.setSize(innerWidth,innerHeight);bloom.setSize(innerWidth,innerHeight);U.uPixel.value=Math.min(devicePixelRatio,2);measure();});
+    const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting)en.target.classList.add('in');}),{threshold:0.16});document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+    document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',ev=>{const t=document.querySelector(a.getAttribute('href'));if(t){ev.preventDefault();lenis.scrollTo(t);closeMM();}}));
+    addEventListener('load',measure);measure();setTimeout(measure,1300);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(measure);
+    const burger=document.getElementById('burger'),mm=document.getElementById('mm');function closeMM(){burger.classList.remove('open');mm.classList.remove('open');}
+    burger.addEventListener('click',()=>{burger.classList.toggle('open');mm.classList.toggle('open');});
+  </script>
+</body>
+</html>
