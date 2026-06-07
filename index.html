@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>Waterbenders — The Power of Clean™</title>
+<meta name="description" content="Low-pressure soft wash for Gold Coast luxury exteriors — tiles intact, warranty intact, clean for months. On the day we book, finished in one visit, or we come back free."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#26356C;--navy-d:#1A254A;--blue:#0689F2;--accent:#0863B4;--ink:#0b1020;--paper:#F6F8FC;--mut:#aeb6cc;--line:rgba(255,255,255,.12)}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{background:#070d1c;color:var(--paper);font-family:"Lato",system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}::selection{background:rgba(6,137,242,.4)}
+  h1,h2,h3,.dwm,.k{font-family:"Montserrat",system-ui,sans-serif}
+  #stage{position:fixed;inset:0;width:100vw;height:100dvh;z-index:0;overflow:hidden;background:#070d1c}
+  #vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+  #scene{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:1}
+  #poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none;z-index:1}
+  .scrim{position:fixed;inset:0;z-index:2;pointer-events:none;background:linear-gradient(90deg,rgba(7,13,28,.86) 0%,rgba(7,13,28,.55) 44%,rgba(7,13,28,.25) 100%)}
+  .grain{position:fixed;inset:0;z-index:2;pointer-events:none;opacity:.04;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+  nav{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:18px clamp(20px,4vw,56px);transition:background .4s,border-color .4s;border-bottom:1px solid transparent}
+  nav.solid{background:rgba(9,14,30,.72);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+  .dwm{font-weight:700;font-size:18px;letter-spacing:.14em;text-transform:uppercase}
+  .dwm small{display:block;font-family:"Lato";font-weight:400;font-size:9.5px;letter-spacing:.26em;color:var(--blue);margin-top:3px;text-transform:none}
+  .right{display:flex;align-items:center;gap:22px}
+  .ph{font-size:13.5px;font-weight:600;letter-spacing:.02em;color:#dfe6f4}.ph:hover{color:#fff}
+  .navcta{padding:11px 20px;border-radius:3px;background:var(--blue);color:#fff;font-size:13px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;box-shadow:0 8px 28px -10px rgba(6,137,242,.9);transition:transform .25s,background .25s}.navcta:hover{transform:translateY(-2px);background:#1f9bff}
+  .burger{display:none;flex-direction:column;gap:5px;cursor:pointer}.burger span{width:22px;height:2px;background:#fff;border-radius:2px;transition:.3s}
+  .burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}.burger.open span:nth-child(2){opacity:0}.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  .mm{display:none}
+
+  main{position:relative;z-index:3}
+  section{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:0 clamp(22px,7vw,150px)}
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity 1s cubic-bezier(.16,1,.3,1),transform 1s cubic-bezier(.16,1,.3,1)}.reveal.in{opacity:1;transform:none}
+  .b{color:var(--blue)}.dim{color:#8893b0}
+  h1,h2,h3,.sub,p,.k{text-shadow:0 2px 40px rgba(7,13,28,.9)}
+  .k{font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--blue);font-weight:600;margin-bottom:22px;display:inline-flex;align-items:center;gap:11px}
+  .k::before{content:"";width:24px;height:1px;background:var(--blue)}
+  .btn{display:inline-flex;align-items:center;gap:9px;padding:15px 30px;border-radius:3px;font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;font-family:"Montserrat";transition:transform .25s,box-shadow .35s,border-color .3s,background .25s}
+  .btn.solid{background:var(--blue);color:#fff;box-shadow:0 12px 40px -10px rgba(6,137,242,.8)}.btn.solid:hover{transform:translateY(-2px);background:#1f9bff}
+  .btn.ghost{border:1px solid rgba(246,248,252,.3);color:#fff}.btn.ghost:hover{border-color:#fff}
+  .ctarow{margin-top:38px;display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+  .micro{margin-top:26px;font-size:12.5px;letter-spacing:.06em;color:var(--mut);text-transform:uppercase}
+
+  .hero{min-height:104vh}
+  .hero h1{font-size:clamp(48px,9vw,150px);line-height:.92;font-weight:800;letter-spacing:-.02em}
+  .hero h1 .b{color:var(--blue)}
+  .sub{margin-top:30px;font-size:clamp(16px,1.8vw,21px);line-height:1.6;max-width:46ch;color:#dfe6f4;font-weight:300}
+
+  h2{font-size:clamp(32px,5.2vw,76px);font-weight:700;letter-spacing:-.015em;line-height:1.02;max-width:18ch}
+  .lead{margin-top:24px;font-size:clamp(15px,1.7vw,20px);line-height:1.6;max-width:48ch;color:var(--mut);font-weight:300}
+  .std{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:46px;max-width:1150px}
+  .scard{padding:26px 20px 28px;border-radius:5px;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.015));border:1px solid var(--line);border-top:2px solid var(--blue);backdrop-filter:blur(12px)}
+  .scard .n{font-size:12px;font-weight:700;color:var(--blue);letter-spacing:.05em}.scard h4{margin-top:12px;font-size:16px;font-weight:700;font-family:"Montserrat";letter-spacing:-.01em}.scard p{margin-top:9px;font-size:13px;line-height:1.5;color:var(--mut)}
+  .surf{display:flex;flex-direction:column;gap:2px;margin-top:40px;max-width:760px}
+  .srow{display:flex;align-items:baseline;justify-content:space-between;gap:20px;padding:20px 0;border-bottom:1px solid var(--line)}
+  .srow h4{font-size:clamp(20px,2.6vw,30px);font-weight:600;font-family:"Montserrat";letter-spacing:-.01em}
+  .srow span{font-size:13px;color:var(--mut);text-align:right;max-width:30ch}
+  .promise{margin-top:34px;font-size:clamp(18px,2.4vw,30px);font-family:"Montserrat";font-weight:600;letter-spacing:-.01em;color:#fff}
+  .proofstrip{display:flex;gap:54px;flex-wrap:wrap;margin-top:32px}
+  .pf .v{font-size:clamp(34px,4.4vw,58px);font-weight:800;font-family:"Montserrat";letter-spacing:-.02em;background:linear-gradient(180deg,#fff,#7fc1ff);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .pf .l{margin-top:6px;font-size:13px;color:var(--mut);max-width:22ch;line-height:1.45}
+  .trust{margin-top:34px;font-size:13.5px;letter-spacing:.04em;color:#cdd5e8;text-transform:uppercase}.trust b{color:var(--blue);font-weight:700}
+  .end{align-items:center;text-align:center;min-height:108vh;justify-content:center}
+  .end h2{max-width:15ch}
+  .contactline{margin-top:30px;font-size:15px;color:#dfe6f4;display:flex;gap:26px;flex-wrap:wrap;justify-content:center}
+  .contactline a{font-weight:600}.contactline a:hover{color:var(--blue)}
+
+  footer{position:relative;z-index:3;padding:54px clamp(22px,7vw,150px) 46px;border-top:1px solid var(--line);background:rgba(7,13,28,.7);backdrop-filter:blur(10px)}
+  .fgrid{display:flex;justify-content:space-between;flex-wrap:wrap;gap:26px;align-items:flex-start}
+  .fbot{margin-top:30px;font-size:12px;color:#6b7596;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+  .scrollcue{position:fixed;bottom:30px;left:50%;transform:translateX(-50%);z-index:5;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--mut);opacity:.8}
+  .pct{position:fixed;bottom:30px;right:clamp(20px,4vw,56px);z-index:5;font-size:12px;font-variant-numeric:tabular-nums;color:var(--blue);font-weight:700;font-family:"Montserrat"}
+
+  @media(max-width:980px){.std{grid-template-columns:1fr 1fr}.right .ph{display:none}}
+  @media(max-width:760px){
+    .navcta{display:none}.burger{display:flex}
+    .mm{display:flex;position:fixed;inset:0;z-index:25;background:rgba(9,14,30,.97);backdrop-filter:blur(20px);flex-direction:column;justify-content:center;gap:8px;padding:0 30px;opacity:0;pointer-events:none;transition:opacity .35s}
+    .mm.open{opacity:1;pointer-events:auto}.mm a{font-family:"Montserrat";font-size:22px;font-weight:600;padding:12px 0}
+    .std{grid-template-columns:1fr}.srow{flex-direction:column;gap:6px}.srow span{text-align:left}.scrim{background:linear-gradient(180deg,rgba(7,13,28,.5),rgba(7,13,28,.86))}
+  }
+</style>
+</head>
+<body>
+  <div id="stage"><video id="vid" playsinline muted loop autoplay preload="auto" crossorigin="anonymous"></video><canvas id="scene"></canvas><img id="poster" alt=""/></div>
+  <div class="scrim"></div><div class="grain"></div>
+
+  <nav id="nav">
+    <div class="dwm">Waterbenders<small>The Power of Clean™</small></div>
+    <div class="right">
+      <a class="ph" href="tel:1300396576">1300 396 576</a>
+      <a class="navcta" href="#book">Book an assessment</a>
+      <div class="burger" id="burger"><span></span><span></span><span></span></div>
+    </div>
+  </nav>
+  <div class="mm" id="mm">
+    <a href="#method">The method</a><a href="#standard">The Standard</a><a href="#surfaces">Every surface</a><a href="#proof">Royal Albert</a><a href="#book">Book an assessment</a><a href="tel:1300396576">1300 396 576</a>
+  </div>
+
+  <main>
+    <section class="hero">
+      <span class="k reveal">The Power of Clean™</span>
+      <h1 class="reveal">Soft washed.<br><span class="b">Never blasted.</span></h1>
+      <p class="sub reveal">A low-pressure soft wash that kills mould and lichen at the root — tiles intact, warranty intact, clean for months not weeks. On the day we book, finished in one visit, or we come back free.</p>
+      <div class="ctarow reveal"><a class="btn solid" href="#book">Book your Standard Assessment</a><a class="btn ghost" href="#proof">The Royal Albert Standard</a></div>
+      <div class="micro reveal">Gold Coast luxury exteriors · by introduction · zero unsatisfied clients</div>
+    </section>
+
+    <section id="method">
+      <span class="k reveal">The method</span>
+      <h2 class="reveal">Most cleaners blast. <span class="dim">We don't.</span></h2>
+      <p class="lead reveal">High pressure cracks tiles, forces water into ceiling cavities, and strips a surface so it greens again within weeks. Our low-pressure soft wash kills the mould and lichen at the root — so your warranty stays intact, nothing is forced into the cavity, and the result holds for months. The method is the guarantee.</p>
+    </section>
+
+    <section id="standard">
+      <span class="k reveal">The Waterbenders Standard</span>
+      <h2 class="reveal">Five promises. In writing.</h2>
+      <div class="std">
+        <div class="scard reveal"><div class="n">01</div><h4>Flawless Finish</h4><p>Every surface in scope, done to one standard — or we put it right.</p></div>
+        <div class="scard reveal"><div class="n">02</div><h4>No-Damage Promise</h4><p>Low-pressure method. No cracked tiles, no voided warranty, no water in the cavity.</p></div>
+        <div class="scard reveal"><div class="n">03</div><h4>Turn-Up Guarantee</h4><p>On the day we book, finished in one visit — or we come back free.</p></div>
+        <div class="scard reveal"><div class="n">04</div><h4>Cleaner for Longer</h4><p>Root-kill soft wash holds for months, not weeks. You'll see it at day sixty.</p></div>
+        <div class="scard reveal"><div class="n">05</div><h4>The Transferable Standard</h4><p>The result carries to the next owner — a luxury lever no rival offers.</p></div>
+      </div>
+    </section>
+
+    <section id="surfaces">
+      <span class="k reveal">One call. Every surface.</span>
+      <h2 class="reveal">Done right.<br>No follow-up needed.</h2>
+      <div class="surf">
+        <div class="srow reveal"><h4>Pressure &amp; soft washing</h4><span>Driveways, paths, render and stone — lifted, not stripped.</span></div>
+        <div class="srow reveal"><h4>House &amp; building washing</h4><span>Full exterior soft wash, root-kill biocide, salt-air ready.</span></div>
+        <div class="srow reveal"><h4>Windows, inside and out</h4><span>Streak-free glass, tracks and frames included.</span></div>
+        <div class="srow reveal"><h4>Solar panel cleaning</h4><span>Salt film removed — recovered output you can read on the meter.</span></div>
+        <div class="srow reveal"><h4>Full property rejuvenations</h4><span>Whole-exterior restoration, scoped and finished in one engagement.</span></div>
+      </div>
+      <div class="promise reveal">One call. Every surface. Done right. No follow-up needed.</div>
+    </section>
+
+    <section id="proof">
+      <span class="k reveal">The Royal Albert Standard</span>
+      <h2 class="reveal">762m². Three days.<br>Vendor-ready.</h2>
+      <p class="lead reveal">A Sovereign Islands waterfront home, full exterior, taken to listing-ready in three days. One reference, photographed, that lets a homeowner see their own property in the result.</p>
+      <div class="proofstrip reveal">
+        <div class="pf"><div class="v">762m²</div><div class="l">Full exterior, every surface in one scope.</div></div>
+        <div class="pf"><div class="v">3 days</div><div class="l">Booked to vendor-ready, finished on schedule.</div></div>
+        <div class="pf"><div class="v">$350K</div><div class="l">Annual revenue on zero advertising — referral and introduction only.</div></div>
+      </div>
+      <div class="trust reveal"><b>Zero</b> unsatisfied clients · Family-operated · By introduction across the Gold Coast</div>
+    </section>
+
+    <section class="end" id="book">
+      <span class="k reveal">By introduction</span>
+      <h2 class="reveal">Hand over the keys.<br>Expect <span class="b">perfection</span>.</h2>
+      <p class="lead reveal" style="text-align:center">Book a free on-site Standard Assessment. We walk the property, scope every surface, and send a single fixed proposal — no pressure, no follow-up needed.</p>
+      <div class="ctarow reveal" style="justify-content:center"><a class="btn solid" href="mailto:management@waterbenders.com.au?subject=Standard%20Assessment%20request">Book your Standard Assessment</a><a class="btn ghost" href="tel:1300396576">Call 1300 396 576</a></div>
+      <div class="contactline reveal"><a href="mailto:management@waterbenders.com.au">management@waterbenders.com.au</a><span>·</span><span>Gold Coast, Australia</span></div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="fgrid">
+      <div>
+        <div class="dwm" style="font-size:17px">Waterbenders<small>The Power of Clean™</small></div>
+        <p style="margin-top:14px;color:var(--mut);font-size:14px;max-width:34ch;line-height:1.55;font-weight:300">One call. Every surface. Done right. No follow-up needed.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;font-size:14px;color:var(--mut)">
+        <a href="tel:1300396576">1300 396 576</a>
+        <a href="mailto:management@waterbenders.com.au">management@waterbenders.com.au</a>
+        <span>Gold Coast, Australia</span>
+      </div>
+    </div>
+    <div class="fbot"><span>© 2026 Water Benders Pty Ltd</span><span>The Power of Clean™</span></div>
+  </footer>
+
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"}}</script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script type="module">
+    import * as THREE from 'three';
+    const REDUCED=matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const vid=document.getElementById('vid');vid.src="scenes/water-glass.mp4";
+    const canvas=document.getElementById('scene'),posterEl=document.getElementById('poster'),stage=document.getElementById('stage');
+    const renderer=new THREE.WebGLRenderer({canvas,antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+    const scene=new THREE.Scene();const camera=new THREE.OrthographicCamera(-1,1,1,-1,0,1);
+    const tex=new THREE.VideoTexture(vid);tex.minFilter=THREE.LinearFilter;tex.magFilter=THREE.LinearFilter;tex.generateMipmaps=false;
+    const uniforms={uTex:{value:tex},uTime:{value:0},uScroll:{value:0},uVel:{value:0},uRes:{value:new THREE.Vector2(1,1)},uVidRes:{value:new THREE.Vector2(16,9)},uBlue:{value:new THREE.Color(0x1f6fd0)}};
+    function size(){renderer.setSize(stage.clientWidth,stage.clientHeight);uniforms.uRes.value.set(stage.clientWidth,stage.clientHeight);}
+    const mat=new THREE.ShaderMaterial({uniforms,
+      vertexShader:`varying vec2 vUv;void main(){vUv=uv;gl_Position=vec4(position,1.0);}`,
+      fragmentShader:`precision highp float;uniform sampler2D uTex;uniform float uTime;uniform float uScroll;uniform float uVel;uniform vec2 uRes;uniform vec2 uVidRes;uniform vec3 uBlue;varying vec2 vUv;
+        vec2 coverUv(vec2 uv){float sa=uRes.x/uRes.y,va=uVidRes.x/uVidRes.y;vec2 s=vec2(1.0);if(sa>va){s.y=va/sa;}else{s.x=sa/va;}return (uv-0.5)*s+0.5;}
+        float hash(vec2 p){return fract(sin(dot(p,vec2(41.3,289.1)))*43758.5453);}
+        void main(){vec2 uv=coverUv(vUv);
+          float amt=0.008+uVel*0.035;
+          uv.x+=sin(uv.y*9.0+uTime*0.5+uScroll*6.28)*amt*(0.5+uScroll*0.6);
+          uv.y+=cos(uv.x*7.0+uTime*0.4)*amt*0.4;
+          float sp=0.002+uVel*0.012;
+          vec3 col=vec3(texture2D(uTex,uv+vec2(sp,0.0)).r,texture2D(uTex,uv).g,texture2D(uTex,uv-vec2(sp,0.0)).b);
+          float lum=dot(col,vec3(0.299,0.587,0.114));
+          col=mix(col,col*uBlue*1.5,0.22)+uBlue*pow(lum,2.0)*0.16;
+          col*=0.95+0.05*sin(vUv.y*uRes.y*1.1);col+=(hash(vUv*uRes+uTime)-0.5)*0.03;
+          float d=distance(vUv,vec2(0.5));col*=smoothstep(1.05,0.5,d)*0.45+0.55;
+          gl_FragColor=vec4(col,1.0);}`});
+    scene.add(new THREE.Mesh(new THREE.PlaneGeometry(2,2),mat));
+    const render=()=>renderer.render(scene,camera);
+    size();addEventListener('resize',size);
+    vid.addEventListener('loadedmetadata',()=>{uniforms.uVidRes.value.set(vid.videoWidth||16,vid.videoHeight||9);size();});
+
+    if(REDUCED){canvas.style.display='none';
+      vid.addEventListener('loadeddata',()=>{vid.play().then(()=>{vid.pause();vid.currentTime=vid.duration*0.5;}).catch(()=>{});
+        const c=document.createElement('canvas');c.width=vid.videoWidth;c.height=vid.videoHeight;
+        vid.addEventListener('seeked',()=>{try{c.getContext('2d').drawImage(vid,0,0);posterEl.src=c.toDataURL('image/jpeg',0.85);posterEl.style.display='block';}catch(e){}},{once:true});},{once:true});
+    } else {
+      gsap.registerPlugin(ScrollTrigger);
+      const lenis=new Lenis({lerp:0.09,smoothWheel:true});window.__lenis=lenis;
+      lenis.on('scroll',ScrollTrigger.update);gsap.ticker.add((t)=>lenis.raf(t*1000));gsap.ticker.lagSmoothing(0);
+      lenis.on('scroll',e=>{document.getElementById('nav').classList.toggle('solid',(e.scroll||0)>40);});
+      let vel=0;const playTry=()=>{const p=vid.play();if(p)p.catch(()=>{});};
+      playTry();vid.addEventListener('loadeddata',playTry,{once:true});
+      addEventListener('pointerdown',playTry,{once:true});addEventListener('touchstart',playTry,{once:true});
+      ScrollTrigger.create({trigger:'main',start:'top top',end:'bottom bottom',scrub:true,
+        onUpdate:(self)=>{vel=Math.min(Math.abs(self.getVelocity())/3000,2.0);uniforms.uScroll.value=self.progress;vid.playbackRate=1+vel*0.5;
+          document.getElementById('pct').textContent=String(Math.round(self.progress*100)).padStart(3,'0');
+          document.getElementById('cue').style.opacity=self.progress>0.02?0:0.8;}});
+      const clock=new THREE.Clock();let vS=0;
+      function loop(){uniforms.uTime.value+=clock.getDelta();vS+=(vel-vS)*0.08;uniforms.uVel.value=vS;
+        if(vid.readyState>=2)tex.needsUpdate=true;render();requestAnimationFrame(loop);}
+      loop();
+    }
+    const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting)en.target.classList.add('in');}),{threshold:0.16});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+    addEventListener('load',()=>{document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',ev=>{const t=document.querySelector(a.getAttribute('href'));if(t){ev.preventDefault();(window.__lenis?window.__lenis.scrollTo(t):t.scrollIntoView({behavior:'smooth'}));closeMM();}}));});
+    const burger=document.getElementById('burger'),mm=document.getElementById('mm');
+    function closeMM(){burger.classList.remove('open');mm.classList.remove('open');}
+    burger.addEventListener('click',()=>{burger.classList.toggle('open');mm.classList.toggle('open');});
+  </script>
+  <div class="scrollcue" id="cue">scroll</div>
+  <div class="pct" id="pct">000</div>
+</body>
+</html>
