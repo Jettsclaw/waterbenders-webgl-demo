@@ -3,193 +3,161 @@
 <head>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
 <title>Waterbenders — The Power of Clean™</title>
-<meta name="description" content="Low-pressure soft wash for Gold Coast luxury exteriors — tiles intact, warranty intact, clean for months. On the day we book, finished in one visit, or we come back free."/>
+<meta name="description" content="A low-pressure soft wash for Gold Coast luxury exteriors — tiles intact, warranty intact, clean for months. On the day we book, or we come back free."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
-  :root{--navy:#26356C;--navy-d:#1A254A;--blue:#0689F2;--accent:#0863B4;--ink:#0b1020;--paper:#F6F8FC;--mut:#aeb6cc;--line:rgba(255,255,255,.12)}
+  :root{--navy:#26356C;--blue:#0689F2;--aqua:#36c6e6;--paper:#F6F8FC;--mut:#aeb6cc;--line:rgba(255,255,255,.12)}
   *{margin:0;padding:0;box-sizing:border-box}
-  html,body{background:#070d1c;color:var(--paper);font-family:"Lato",system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-  a{color:inherit;text-decoration:none}::selection{background:rgba(6,137,242,.4)}
-  h1,h2,h3,.dwm,.k{font-family:"Montserrat",system-ui,sans-serif}
-  #stage{position:fixed;inset:0;width:100vw;height:100dvh;z-index:0;overflow:hidden;background:#070d1c}
-  #vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+  html,body{background:#040a16;color:var(--paper);font-family:"Lato",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}::selection{background:rgba(54,198,230,.35)}
+  h1,h2,h3,.dwm,.k,.bigwm{font-family:"Montserrat",system-ui,sans-serif}
+
+  /* fixed cinematic stage */
+  #stage{position:fixed;inset:0;width:100vw;height:100dvh;z-index:0;overflow:hidden;background:#040a16}
+  #vidA,#vidB{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;z-index:0}
   #scene{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:1}
-  #poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none;z-index:1}
-  .scrim{position:fixed;inset:0;z-index:2;pointer-events:none;background:radial-gradient(135% 100% at 50% 42%,transparent 46%,rgba(7,13,28,.5) 100%),linear-gradient(180deg,rgba(7,13,28,.5) 0%,transparent 18%,transparent 74%,rgba(7,13,28,.55) 100%)}
-  .grain{position:fixed;inset:0;z-index:2;pointer-events:none;opacity:.04;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .grain{position:fixed;inset:0;z-index:2;pointer-events:none;opacity:.05;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .edge{position:fixed;inset:0;z-index:2;pointer-events:none;background:radial-gradient(140% 120% at 50% 45%,transparent 52%,rgba(4,10,22,.6) 100%)}
 
-  nav{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:18px clamp(20px,4vw,56px);transition:background .4s,border-color .4s;border-bottom:1px solid transparent}
-  nav.solid{background:rgba(9,14,30,.72);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
-  .dwm{font-weight:700;font-size:18px;letter-spacing:.14em;text-transform:uppercase}
-  .dwm small{display:block;font-family:"Lato";font-weight:400;font-size:9.5px;letter-spacing:.26em;color:var(--blue);margin-top:3px;text-transform:none}
+  /* chrome */
+  nav{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:20px clamp(20px,4vw,56px)}
+  .dwm{font-weight:800;font-size:17px;letter-spacing:.18em;text-transform:uppercase}
+  .dwm small{display:block;font-family:"Lato";font-weight:400;font-size:9px;letter-spacing:.28em;color:var(--aqua);margin-top:3px;text-transform:none}
   .right{display:flex;align-items:center;gap:22px}
-  .ph{font-size:13.5px;font-weight:600;letter-spacing:.02em;color:#dfe6f4}.ph:hover{color:#fff}
-  .navcta{padding:11px 20px;border-radius:3px;background:var(--blue);color:#fff;font-size:13px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;box-shadow:0 8px 28px -10px rgba(6,137,242,.9);transition:transform .25s,background .25s}.navcta:hover{transform:translateY(-2px);background:#1f9bff}
-  .burger{display:none;flex-direction:column;gap:5px;cursor:pointer}.burger span{width:22px;height:2px;background:#fff;border-radius:2px;transition:.3s}
-  .burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}.burger.open span:nth-child(2){opacity:0}.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-  .mm{display:none}
+  .ph{font-size:13px;font-weight:600;color:#dfe6f4}.ph:hover{color:#fff}
+  .navcta{padding:11px 20px;border-radius:2px;background:var(--blue);color:#fff;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;transition:.25s}.navcta:hover{background:#1f9bff;transform:translateY(-2px)}
 
-  main{position:relative;z-index:3}
-  section{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:0 clamp(22px,7vw,150px)}
-  .reveal{opacity:0;transform:translateY(30px);transition:opacity 1s cubic-bezier(.16,1,.3,1),transform 1s cubic-bezier(.16,1,.3,1)}.reveal.in{opacity:1;transform:none}
-  .b{color:var(--blue)}.dim{color:#8893b0}
-  h1,h2,h3,.sub,p,.k{text-shadow:0 2px 40px rgba(7,13,28,.9)}
-  .k{font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--blue);font-weight:600;margin-bottom:22px;display:inline-flex;align-items:center;gap:11px}
-  .k::before{content:"";width:24px;height:1px;background:var(--blue)}
-  .btn{display:inline-flex;align-items:center;gap:9px;padding:15px 30px;border-radius:3px;font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;font-family:"Montserrat";transition:transform .25s,box-shadow .35s,border-color .3s,background .25s}
-  .btn.solid{background:var(--blue);color:#fff;box-shadow:0 12px 40px -10px rgba(6,137,242,.8)}.btn.solid:hover{transform:translateY(-2px);background:#1f9bff}
-  .btn.ghost{border:1px solid rgba(246,248,252,.3);color:#fff}.btn.ghost:hover{border-color:#fff}
-  .ctarow{margin-top:38px;display:flex;gap:16px;flex-wrap:wrap;align-items:center}
-  .micro{margin-top:26px;font-size:12.5px;letter-spacing:.06em;color:var(--mut);text-transform:uppercase}
+  /* chapter index rail */
+  .rail{position:fixed;right:clamp(16px,2.4vw,34px);top:50%;transform:translateY(-50%);z-index:20;display:flex;flex-direction:column;gap:16px;align-items:flex-end}
+  .rail a{display:flex;align-items:center;gap:10px;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.4);transition:.3s}
+  .rail a .dot{width:7px;height:7px;border:1px solid rgba(255,255,255,.4);border-radius:50%;transition:.3s}
+  .rail a.on{color:#fff}.rail a.on .dot{background:var(--aqua);border-color:var(--aqua);box-shadow:0 0 12px var(--aqua)}
+  .rail a .lab{opacity:0;transform:translateX(6px);transition:.3s}.rail a:hover .lab,.rail a.on .lab{opacity:1;transform:none}
+  .prog{position:fixed;left:0;top:0;height:2px;background:linear-gradient(90deg,var(--blue),var(--aqua));z-index:31;width:0}
+  .pct{position:fixed;bottom:26px;left:clamp(20px,4vw,56px);z-index:20;font-size:11px;letter-spacing:.2em;color:var(--mut);font-family:"Montserrat";font-weight:600}
+  .pct b{color:var(--aqua)}
 
-  .hero{min-height:104vh}
-  .hero-center{align-items:center;justify-content:center;text-align:center}
-  .lockup{display:flex;flex-direction:column;align-items:center;gap:20px;position:relative}
-  .lockup::before{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:150%;height:300%;background:radial-gradient(ellipse at center,rgba(7,13,28,.6),rgba(7,13,28,.25) 52%,transparent 74%);z-index:-1;filter:blur(10px)}
-  .lockup .mark{width:44px;height:44px;border:1.5px solid var(--blue);transform:rotate(45deg);position:relative;box-shadow:0 0 34px -4px var(--blue)}
-  .lockup .mark::after{content:"";position:absolute;inset:9px;border:1px solid rgba(255,255,255,.55)}
-  .bigwm{font-family:"Montserrat";font-weight:800;letter-spacing:.2em;font-size:clamp(36px,7.5vw,104px);line-height:1;text-shadow:0 6px 60px rgba(7,13,28,.95)}
-  .lockline{width:96px;height:1px;background:linear-gradient(90deg,transparent,var(--blue),transparent)}
-  .tagline{font-family:"Lato";font-weight:400;letter-spacing:.36em;text-transform:uppercase;font-size:clamp(11px,1.4vw,15px);color:#d6e4f6}
-  #promise h1{font-size:clamp(48px,9vw,140px);line-height:.92;font-weight:800;letter-spacing:-.02em}
-  #promise h1 .b{color:var(--blue)}
-  .sub{margin-top:30px;font-size:clamp(16px,1.8vw,21px);line-height:1.6;max-width:46ch;color:#dfe6f4;font-weight:300}
+  /* scroll story */
+  .story{position:relative;z-index:10;height:680vh}
+  .chap{position:fixed;inset:0;z-index:10;display:flex;flex-direction:column;justify-content:center;padding:0 clamp(22px,7vw,150px);opacity:0;pointer-events:none;transition:opacity .6s ease}
+  .chap.on{opacity:1;pointer-events:auto}
+  .chap .inner{max-width:60ch;transform:translateY(24px);transition:transform 1s cubic-bezier(.16,1,.3,1)}
+  .chap.on .inner{transform:none}
+  .chap::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,rgba(4,10,22,.82) 0%,rgba(4,10,22,.5) 36%,rgba(4,10,22,.08) 66%,transparent 100%)}
+  .chap.center::before{background:radial-gradient(closest-side at 50% 50%,rgba(4,10,22,.72),rgba(4,10,22,.3) 60%,transparent 80%)}
+  .k{font-size:11.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--aqua);font-weight:600;margin-bottom:20px;display:inline-flex;align-items:center;gap:11px}
+  .k::before{content:"";width:26px;height:1px;background:var(--aqua)}
+  h1,h2{text-shadow:0 4px 50px rgba(4,10,22,.95)}.sub,p{text-shadow:0 2px 30px rgba(4,10,22,.95)}
+  .b{color:var(--aqua)}.dim{color:#7e8aa8}
+  h1{font-size:clamp(46px,8.5vw,140px);line-height:.9;font-weight:800;letter-spacing:-.02em}
+  h2{font-size:clamp(34px,5.6vw,86px);line-height:.96;font-weight:800;letter-spacing:-.02em;max-width:16ch}
+  .sub{margin-top:26px;font-size:clamp(16px,1.8vw,21px);line-height:1.6;max-width:42ch;color:#dfe6f4;font-weight:300}
+  .btn{display:inline-flex;align-items:center;gap:9px;padding:15px 30px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;font-family:"Montserrat";transition:.25s}
+  .btn.solid{background:var(--blue);color:#fff;box-shadow:0 12px 40px -10px rgba(6,137,242,.8)}.btn.solid:hover{background:#1f9bff;transform:translateY(-2px)}
+  .btn.ghost{border:1px solid rgba(246,248,252,.32);color:#fff}.btn.ghost:hover{border-color:#fff}
+  .ctarow{margin-top:36px;display:flex;gap:15px;flex-wrap:wrap;align-items:center}
+  .micro{margin-top:24px;font-size:12px;letter-spacing:.06em;color:var(--mut);text-transform:uppercase}
 
-  h2{font-size:clamp(32px,5.2vw,76px);font-weight:700;letter-spacing:-.015em;line-height:1.02;max-width:18ch}
-  .lead{margin-top:24px;font-size:clamp(15px,1.7vw,20px);line-height:1.6;max-width:48ch;color:var(--mut);font-weight:300}
-  .std{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:46px;max-width:1150px}
-  .scard{padding:26px 20px 28px;border-radius:5px;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.015));border:1px solid var(--line);border-top:2px solid var(--blue);backdrop-filter:blur(12px)}
-  .scard .n{font-size:12px;font-weight:700;color:var(--blue);letter-spacing:.05em}.scard h4{margin-top:12px;font-size:16px;font-weight:700;font-family:"Montserrat";letter-spacing:-.01em}.scard p{margin-top:9px;font-size:13px;line-height:1.5;color:var(--mut)}
-  .surf{display:flex;flex-direction:column;gap:2px;margin-top:40px;max-width:760px}
-  .srow{display:flex;align-items:baseline;justify-content:space-between;gap:20px;padding:20px 0;border-bottom:1px solid var(--line)}
-  .srow h4{font-size:clamp(20px,2.6vw,30px);font-weight:600;font-family:"Montserrat";letter-spacing:-.01em}
-  .srow span{font-size:13px;color:var(--mut);text-align:right;max-width:30ch}
-  .promise{margin-top:34px;font-size:clamp(18px,2.4vw,30px);font-family:"Montserrat";font-weight:600;letter-spacing:-.01em;color:#fff}
-  .proofstrip{display:flex;gap:54px;flex-wrap:wrap;margin-top:32px}
-  .pf .v{font-size:clamp(34px,4.4vw,58px);font-weight:800;font-family:"Montserrat";letter-spacing:-.02em;background:linear-gradient(180deg,#fff,#7fc1ff);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-  .pf .l{margin-top:6px;font-size:13px;color:var(--mut);max-width:22ch;line-height:1.45}
-  .trust{margin-top:34px;font-size:13.5px;letter-spacing:.04em;color:#cdd5e8;text-transform:uppercase}.trust b{color:var(--blue);font-weight:700}
-  .end{align-items:center;text-align:center;min-height:108vh;justify-content:center}
-  .end h2{max-width:15ch}
-  .contactline{margin-top:30px;font-size:15px;color:#dfe6f4;display:flex;gap:26px;flex-wrap:wrap;justify-content:center}
-  .contactline a{font-weight:600}.contactline a:hover{color:var(--blue)}
+  /* hero lockup chapter */
+  .center{align-items:center;text-align:center}
+  .lockup{display:flex;flex-direction:column;align-items:center;gap:18px;position:relative}
+  .lockup::before{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:150%;height:300%;background:radial-gradient(ellipse at center,rgba(4,10,22,.6),rgba(4,10,22,.25) 52%,transparent 74%);z-index:-1;filter:blur(10px)}
+  .lockup .mark{width:42px;height:42px;border:1.5px solid var(--aqua);transform:rotate(45deg);position:relative;box-shadow:0 0 34px -4px var(--aqua)}
+  .lockup .mark::after{content:"";position:absolute;inset:9px;border:1px solid rgba(255,255,255,.6)}
+  .bigwm{font-weight:800;letter-spacing:.2em;font-size:clamp(34px,7.6vw,108px);line-height:1}
+  .lockline{width:96px;height:1px;background:linear-gradient(90deg,transparent,var(--aqua),transparent)}
+  .tagline{font-weight:400;letter-spacing:.36em;text-transform:uppercase;font-size:clamp(11px,1.4vw,15px);color:#d6e4f6;font-family:"Lato"}
 
-  footer{position:relative;z-index:3;padding:54px clamp(22px,7vw,150px) 46px;border-top:1px solid var(--line);background:rgba(7,13,28,.7);backdrop-filter:blur(10px)}
-  .fgrid{display:flex;justify-content:space-between;flex-wrap:wrap;gap:26px;align-items:flex-start}
-  .fbot{margin-top:30px;font-size:12px;color:#6b7596;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
-  .scrollcue{position:fixed;bottom:30px;left:50%;transform:translateX(-50%);z-index:5;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--mut);opacity:.8}
-  .pct{position:fixed;bottom:30px;right:clamp(20px,4vw,56px);z-index:5;font-size:12px;font-variant-numeric:tabular-nums;color:var(--blue);font-weight:700;font-family:"Montserrat"}
+  /* standard cards / surfaces / proof */
+  .std{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:38px;max-width:1050px}
+  .scard{padding:22px 18px;border-radius:4px;background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.02));border:1px solid var(--line);border-top:2px solid var(--aqua);backdrop-filter:blur(10px)}
+  .scard .n{font-size:11px;font-weight:700;color:var(--aqua)}.scard h4{margin-top:10px;font-size:15px;font-weight:700;font-family:"Montserrat"}.scard p{margin-top:7px;font-size:12.5px;line-height:1.45;color:var(--mut)}
+  .surf{display:flex;flex-direction:column;margin-top:30px;max-width:720px}
+  .srow{display:flex;align-items:baseline;justify-content:space-between;gap:18px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .srow h4{font-size:clamp(19px,2.4vw,28px);font-weight:600;font-family:"Montserrat"}.srow span{font-size:12.5px;color:var(--mut);text-align:right;max-width:28ch}
+  .proofstrip{display:flex;gap:50px;flex-wrap:wrap;margin-top:30px}
+  .pf .v{font-size:clamp(34px,4.4vw,60px);font-weight:800;font-family:"Montserrat";letter-spacing:-.02em;background:linear-gradient(180deg,#fff,var(--aqua));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .pf .l{margin-top:5px;font-size:12.5px;color:var(--mut);max-width:20ch;line-height:1.4}
+  .trust{margin-top:30px;font-size:13px;letter-spacing:.04em;color:#cdd5e8;text-transform:uppercase}.trust b{color:var(--aqua)}
+  .contactline{margin-top:26px;font-size:14px;color:#dfe6f4;display:flex;gap:24px;flex-wrap:wrap}.contactline a:hover{color:var(--aqua)}
 
-  @media(max-width:980px){.std{grid-template-columns:1fr 1fr}.right .ph{display:none}}
-  @media(max-width:760px){
-    .navcta{display:none}.burger{display:flex}
-    .mm{display:flex;position:fixed;inset:0;z-index:25;background:rgba(9,14,30,.97);backdrop-filter:blur(20px);flex-direction:column;justify-content:center;gap:8px;padding:0 30px;opacity:0;pointer-events:none;transition:opacity .35s}
-    .mm.open{opacity:1;pointer-events:auto}.mm a{font-family:"Montserrat";font-size:22px;font-weight:600;padding:12px 0}
-    .std{grid-template-columns:1fr}.srow{flex-direction:column;gap:6px}.srow span{text-align:left}.scrim{background:linear-gradient(180deg,rgba(7,13,28,.5),rgba(7,13,28,.86))}
-  }
+  @media(max-width:820px){.rail{display:none}.std{grid-template-columns:1fr 1fr}.right .ph{display:none}.srow{flex-direction:column;gap:4px}.srow span{text-align:left}}
 </style>
 </head>
 <body>
-  <div id="stage"><video id="vid" playsinline muted loop autoplay preload="auto" crossorigin="anonymous"></video><canvas id="scene"></canvas><img id="poster" alt=""/></div>
-  <div class="scrim"></div><div class="grain"></div>
+  <div id="stage">
+    <video id="vidA" playsinline muted loop autoplay preload="auto" crossorigin="anonymous"></video>
+    <video id="vidB" playsinline muted loop autoplay preload="auto" crossorigin="anonymous"></video>
+    <canvas id="scene"></canvas>
+  </div>
+  <div class="grain"></div><div class="edge"></div>
+  <div class="prog" id="prog"></div>
 
-  <nav id="nav">
+  <nav>
     <div class="dwm">Waterbenders<small>The Power of Clean™</small></div>
-    <div class="right">
-      <a class="ph" href="tel:1300396576">1300 396 576</a>
-      <a class="navcta" href="#book">Book an assessment</a>
-      <div class="burger" id="burger"><span></span><span></span><span></span></div>
-    </div>
+    <div class="right"><a class="ph" href="tel:1300396576">1300 396 576</a><a class="navcta" href="#c5">Book an assessment</a></div>
   </nav>
-  <div class="mm" id="mm">
-    <a href="#method">The method</a><a href="#standard">The Standard</a><a href="#surfaces">Every surface</a><a href="#proof">Royal Albert</a><a href="#book">Book an assessment</a><a href="tel:1300396576">1300 396 576</a>
+
+  <div class="rail" id="rail">
+    <a data-go="0"><span class="lab">Waterbenders</span><span class="dot"></span></a>
+    <a data-go="1"><span class="lab">The method</span><span class="dot"></span></a>
+    <a data-go="2"><span class="lab">The Standard</span><span class="dot"></span></a>
+    <a data-go="3"><span class="lab">Every surface</span><span class="dot"></span></a>
+    <a data-go="4"><span class="lab">Royal Albert</span><span class="dot"></span></a>
+    <a data-go="5"><span class="lab">Book</span><span class="dot"></span></a>
+  </div>
+  <div class="pct"><b id="pctn">00</b> / 100 — <span id="chapname">waterbenders</span></div>
+
+  <!-- pinned chapters -->
+  <div class="chap center" data-ch="0">
+    <div class="inner"><div class="lockup"><div class="mark"></div><div class="bigwm">WATERBENDERS</div><div class="lockline"></div><div class="tagline">The Power of Clean™</div></div></div>
+  </div>
+  <div class="chap" data-ch="1">
+    <div class="inner"><span class="k">The method</span><h1>Soft washed.<br><span class="b">Never blasted.</span></h1><p class="sub">A low-pressure soft wash that kills mould and lichen at the root — tiles intact, warranty intact, clean for months not weeks. On the day we book, finished in one visit, or we come back free.</p></div>
+  </div>
+  <div class="chap" data-ch="2">
+    <div class="inner"><span class="k">The Waterbenders Standard</span><h2>Five promises. In writing.</h2>
+      <div class="std">
+        <div class="scard"><div class="n">01</div><h4>Flawless Finish</h4><p>Every surface in scope, to one standard — or we put it right.</p></div>
+        <div class="scard"><div class="n">02</div><h4>No-Damage Promise</h4><p>Low pressure. No cracked tiles, no voided warranty, no water in the cavity.</p></div>
+        <div class="scard"><div class="n">03</div><h4>Turn-Up Guarantee</h4><p>On the day we book, finished in one visit — or we come back free.</p></div>
+        <div class="scard"><div class="n">04</div><h4>Cleaner for Longer</h4><p>Root-kill soft wash holds for months. You'll see it at day sixty.</p></div>
+        <div class="scard"><div class="n">05</div><h4>Transferable Standard</h4><p>The result carries to the next owner — a lever no rival offers.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="chap" data-ch="3">
+    <div class="inner"><span class="k">One call. Every surface.</span><h2>Done right.<br>No follow-up needed.</h2>
+      <div class="surf">
+        <div class="srow"><h4>Pressure &amp; soft washing</h4><span>Driveways, render and stone — lifted, not stripped.</span></div>
+        <div class="srow"><h4>House &amp; building washing</h4><span>Full exterior soft wash, salt-air ready.</span></div>
+        <div class="srow"><h4>Windows, inside and out</h4><span>Streak-free glass, tracks and frames included.</span></div>
+        <div class="srow"><h4>Solar panel cleaning</h4><span>Salt film removed — output you can read on the meter.</span></div>
+        <div class="srow"><h4>Full property rejuvenations</h4><span>Whole-exterior restoration in one engagement.</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="chap" data-ch="4">
+    <div class="inner"><span class="k">The Royal Albert Standard</span><h2>762m². Three days.<br>Vendor-ready.</h2>
+      <p class="sub">A Sovereign Islands waterfront home, full exterior, taken to listing-ready in three days. One reference that lets an owner see their own property in the result.</p>
+      <div class="proofstrip">
+        <div class="pf"><div class="v">762m²</div><div class="l">Full exterior, one scope.</div></div>
+        <div class="pf"><div class="v">3 days</div><div class="l">Booked to vendor-ready.</div></div>
+        <div class="pf"><div class="v">$350K</div><div class="l">Annual revenue on zero advertising.</div></div>
+      </div>
+      <div class="trust"><b>Zero</b> unsatisfied clients · Family-operated · By introduction</div>
+    </div>
+  </div>
+  <div class="chap center" data-ch="5" id="c5">
+    <div class="inner"><span class="k" style="justify-content:center">By introduction</span><h2 style="max-width:15ch;margin:0 auto">Hand over the keys.<br>Expect <span class="b">perfection</span>.</h2>
+      <p class="sub" style="margin-left:auto;margin-right:auto">Book a free on-site Standard Assessment. We walk the property, scope every surface, and send a single fixed proposal — no pressure, no follow-up needed.</p>
+      <div class="ctarow" style="justify-content:center"><a class="btn solid" href="mailto:management@waterbenders.com.au?subject=Standard%20Assessment%20request">Book your Standard Assessment</a><a class="btn ghost" href="tel:1300396576">Call 1300 396 576</a></div>
+      <div class="contactline" style="justify-content:center"><a href="mailto:management@waterbenders.com.au">management@waterbenders.com.au</a><span>·</span><span>Gold Coast, Australia</span></div>
+    </div>
   </div>
 
-  <main>
-    <section class="hero hero-center">
-      <div class="lockup reveal">
-        <div class="mark"></div>
-        <div class="bigwm">WATERBENDERS</div>
-        <div class="lockline"></div>
-        <div class="tagline">The Power of Clean™</div>
-      </div>
-    </section>
-
-    <section id="promise">
-      <span class="k reveal">The method</span>
-      <h1 class="reveal">Soft washed.<br><span class="b">Never blasted.</span></h1>
-      <p class="sub reveal">A low-pressure soft wash that kills mould and lichen at the root — tiles intact, warranty intact, clean for months not weeks. On the day we book, finished in one visit, or we come back free.</p>
-      <div class="ctarow reveal"><a class="btn solid" href="#book">Book your Standard Assessment</a><a class="btn ghost" href="#proof">The Royal Albert Standard</a></div>
-      <div class="micro reveal">Gold Coast luxury exteriors · by introduction · zero unsatisfied clients</div>
-    </section>
-
-    <section id="method">
-      <span class="k reveal">The method</span>
-      <h2 class="reveal">Most cleaners blast. <span class="dim">We don't.</span></h2>
-      <p class="lead reveal">High pressure cracks tiles, forces water into ceiling cavities, and strips a surface so it greens again within weeks. Our low-pressure soft wash kills the mould and lichen at the root — so your warranty stays intact, nothing is forced into the cavity, and the result holds for months. The method is the guarantee.</p>
-    </section>
-
-    <section id="standard">
-      <span class="k reveal">The Waterbenders Standard</span>
-      <h2 class="reveal">Five promises. In writing.</h2>
-      <div class="std">
-        <div class="scard reveal"><div class="n">01</div><h4>Flawless Finish</h4><p>Every surface in scope, done to one standard — or we put it right.</p></div>
-        <div class="scard reveal"><div class="n">02</div><h4>No-Damage Promise</h4><p>Low-pressure method. No cracked tiles, no voided warranty, no water in the cavity.</p></div>
-        <div class="scard reveal"><div class="n">03</div><h4>Turn-Up Guarantee</h4><p>On the day we book, finished in one visit — or we come back free.</p></div>
-        <div class="scard reveal"><div class="n">04</div><h4>Cleaner for Longer</h4><p>Root-kill soft wash holds for months, not weeks. You'll see it at day sixty.</p></div>
-        <div class="scard reveal"><div class="n">05</div><h4>The Transferable Standard</h4><p>The result carries to the next owner — a luxury lever no rival offers.</p></div>
-      </div>
-    </section>
-
-    <section id="surfaces">
-      <span class="k reveal">One call. Every surface.</span>
-      <h2 class="reveal">Done right.<br>No follow-up needed.</h2>
-      <div class="surf">
-        <div class="srow reveal"><h4>Pressure &amp; soft washing</h4><span>Driveways, paths, render and stone — lifted, not stripped.</span></div>
-        <div class="srow reveal"><h4>House &amp; building washing</h4><span>Full exterior soft wash, root-kill biocide, salt-air ready.</span></div>
-        <div class="srow reveal"><h4>Windows, inside and out</h4><span>Streak-free glass, tracks and frames included.</span></div>
-        <div class="srow reveal"><h4>Solar panel cleaning</h4><span>Salt film removed — recovered output you can read on the meter.</span></div>
-        <div class="srow reveal"><h4>Full property rejuvenations</h4><span>Whole-exterior restoration, scoped and finished in one engagement.</span></div>
-      </div>
-      <div class="promise reveal">One call. Every surface. Done right. No follow-up needed.</div>
-    </section>
-
-    <section id="proof">
-      <span class="k reveal">The Royal Albert Standard</span>
-      <h2 class="reveal">762m². Three days.<br>Vendor-ready.</h2>
-      <p class="lead reveal">A Sovereign Islands waterfront home, full exterior, taken to listing-ready in three days. One reference, photographed, that lets a homeowner see their own property in the result.</p>
-      <div class="proofstrip reveal">
-        <div class="pf"><div class="v">762m²</div><div class="l">Full exterior, every surface in one scope.</div></div>
-        <div class="pf"><div class="v">3 days</div><div class="l">Booked to vendor-ready, finished on schedule.</div></div>
-        <div class="pf"><div class="v">$350K</div><div class="l">Annual revenue on zero advertising — referral and introduction only.</div></div>
-      </div>
-      <div class="trust reveal"><b>Zero</b> unsatisfied clients · Family-operated · By introduction across the Gold Coast</div>
-    </section>
-
-    <section class="end" id="book">
-      <span class="k reveal">By introduction</span>
-      <h2 class="reveal">Hand over the keys.<br>Expect <span class="b">perfection</span>.</h2>
-      <p class="lead reveal" style="text-align:center">Book a free on-site Standard Assessment. We walk the property, scope every surface, and send a single fixed proposal — no pressure, no follow-up needed.</p>
-      <div class="ctarow reveal" style="justify-content:center"><a class="btn solid" href="mailto:management@waterbenders.com.au?subject=Standard%20Assessment%20request">Book your Standard Assessment</a><a class="btn ghost" href="tel:1300396576">Call 1300 396 576</a></div>
-      <div class="contactline reveal"><a href="mailto:management@waterbenders.com.au">management@waterbenders.com.au</a><span>·</span><span>Gold Coast, Australia</span></div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="fgrid">
-      <div>
-        <div class="dwm" style="font-size:17px">Waterbenders<small>The Power of Clean™</small></div>
-        <p style="margin-top:14px;color:var(--mut);font-size:14px;max-width:34ch;line-height:1.55;font-weight:300">One call. Every surface. Done right. No follow-up needed.</p>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:8px;font-size:14px;color:var(--mut)">
-        <a href="tel:1300396576">1300 396 576</a>
-        <a href="mailto:management@waterbenders.com.au">management@waterbenders.com.au</a>
-        <span>Gold Coast, Australia</span>
-      </div>
-    </div>
-    <div class="fbot"><span>© 2026 Water Benders Pty Ltd</span><span>The Power of Clean™</span></div>
-  </footer>
+  <div class="story" id="story"></div>
 
   <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"}}</script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
@@ -198,67 +166,126 @@
   <script type="module">
     import * as THREE from 'three';
     const REDUCED=matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const vid=document.getElementById('vid');vid.src="scenes/stream-arc.mp4";
-    const canvas=document.getElementById('scene'),posterEl=document.getElementById('poster'),stage=document.getElementById('stage');
+    // chapter → scene file. Crossfade between consecutive chapters' scenes.
+    const SCENES=["scenes/ribbons.mp4","scenes/stream-arc.mp4","scenes/water-glass.mp4","scenes/caustics.mp4","scenes/droplet.mp4","scenes/ribbons.mp4"];
+    const NCH=SCENES.length;
+    const vA=document.getElementById('vidA'),vB=document.getElementById('vidB');
+    const canvas=document.getElementById('scene'),stage=document.getElementById('stage');
     const renderer=new THREE.WebGLRenderer({canvas,antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));
-    const scene=new THREE.Scene();const camera=new THREE.OrthographicCamera(-1,1,1,-1,0,1);
-    const tex=new THREE.VideoTexture(vid);tex.minFilter=THREE.LinearFilter;tex.magFilter=THREE.LinearFilter;tex.generateMipmaps=false;
-    const uniforms={uTex:{value:tex},uTime:{value:0},uScroll:{value:0},uVel:{value:0},uRes:{value:new THREE.Vector2(1,1)},uVidRes:{value:new THREE.Vector2(16,9)},uBlue:{value:new THREE.Color(0x1f6fd0)}};
-    function size(){renderer.setSize(stage.clientWidth,stage.clientHeight);uniforms.uRes.value.set(stage.clientWidth,stage.clientHeight);}
-    const mat=new THREE.ShaderMaterial({uniforms,
-      vertexShader:`varying vec2 vUv;void main(){vUv=uv;gl_Position=vec4(position,1.0);}`,
-      fragmentShader:`precision highp float;uniform sampler2D uTex;uniform float uTime;uniform float uScroll;uniform float uVel;uniform vec2 uRes;uniform vec2 uVidRes;uniform vec3 uBlue;varying vec2 vUv;
-        vec2 coverUv(vec2 uv){float sa=uRes.x/uRes.y,va=uVidRes.x/uVidRes.y;vec2 s=vec2(1.0);if(sa>va){s.y=va/sa;}else{s.x=sa/va;}return (uv-0.5)*s+0.5;}
+    const scene=new THREE.Scene();const cam=new THREE.OrthographicCamera(-1,1,1,-1,0,1);
+    const texA=new THREE.VideoTexture(vA),texB=new THREE.VideoTexture(vB);
+    [texA,texB].forEach(t=>{t.minFilter=THREE.LinearFilter;t.magFilter=THREE.LinearFilter;t.generateMipmaps=false;});
+    const U={uA:{value:texA},uB:{value:texB},uMix:{value:0},uHasVid:{value:0},uTime:{value:0},uScroll:{value:0},uVel:{value:0},
+      uRes:{value:new THREE.Vector2(1,1)},uVA:{value:new THREE.Vector2(16,9)},uVB:{value:new THREE.Vector2(16,9)},
+      uMouse:{value:new THREE.Vector2(0.5,0.5)},uNavy:{value:new THREE.Color(0x123a6e)},uAqua:{value:new THREE.Color(0x36c6e6)}};
+    function size(){renderer.setSize(stage.clientWidth,stage.clientHeight);U.uRes.value.set(stage.clientWidth,stage.clientHeight);}
+    const mat=new THREE.ShaderMaterial({uniforms:U,
+      vertexShader:`varying vec2 v;void main(){v=uv;gl_Position=vec4(position,1.0);}`,
+      fragmentShader:`precision highp float;
+        uniform sampler2D uA,uB;uniform float uMix,uHasVid,uTime,uScroll,uVel;
+        uniform vec2 uRes,uVA,uVB,uMouse;uniform vec3 uNavy,uAqua;varying vec2 v;
+        vec2 cover(vec2 uv,vec2 vr){float sa=uRes.x/uRes.y,va=vr.x/vr.y;vec2 s=vec2(1.);if(sa>va)s.y=va/sa;else s.x=sa/va;return (uv-.5)*s+.5;}
+        // ---- procedural caustic water (the ever-present scroll-morphing base) ----
+        float caustic(vec2 uv,float t,float turb){
+          vec2 p=uv*6.0; float c=0.0; float inten=0.0;
+          for(int n=0;n<4;n++){
+            float fn=float(n)+1.0;
+            p+=vec2(sin(p.y*1.5+t*0.9+fn), cos(p.x*1.5+t*0.7+fn))*(0.35+turb*0.5);
+            c=1.0/length(vec2(sin(p.x+t)*0.5, cos(p.y+t*0.8)*0.5)+ (1.2-turb*0.5));
+            inten+=c;
+          }
+          inten/=4.0; return pow(inten,2.2);
+        }
         float hash(vec2 p){return fract(sin(dot(p,vec2(41.3,289.1)))*43758.5453);}
-        void main(){vec2 uv=coverUv(vUv);
-          float amt=0.008+uVel*0.035;
-          uv.x+=sin(uv.y*9.0+uTime*0.5+uScroll*6.28)*amt*(0.5+uScroll*0.6);
-          uv.y+=cos(uv.x*7.0+uTime*0.4)*amt*0.4;
-          float sp=0.002+uVel*0.012;
-          vec3 col=vec3(texture2D(uTex,uv+vec2(sp,0.0)).r,texture2D(uTex,uv).g,texture2D(uTex,uv-vec2(sp,0.0)).b);
-          float lum=dot(col,vec3(0.299,0.587,0.114));
-          col=mix(col,col*uBlue*1.5,0.16)+uBlue*pow(lum,2.0)*0.14;
-          col=(col-0.5)*1.2+0.5;                                   // contrast punch
-          col*=1.22;                                               // brighten the water
-          col+=pow(max(vec3(0.0),col-vec3(0.5)),vec3(2.0))*0.7;    // glow on the bright streams
-          col*=0.97+0.03*sin(vUv.y*uRes.y*1.1);col+=(hash(vUv*uRes+uTime)-0.5)*0.025;
-          float d=distance(vUv,vec2(0.5));col*=smoothstep(1.25,0.62,d)*0.2+0.8; // soft vignette, water stays full-bleed
-          col*=1.0-uScroll*0.4;   // dim as you scroll into content sections for text legibility
-          gl_FragColor=vec4(col,1.0);}`});
-    scene.add(new THREE.Mesh(new THREE.PlaneGeometry(2,2),mat));
-    const render=()=>renderer.render(scene,camera);
-    size();addEventListener('resize',size);
-    vid.addEventListener('loadedmetadata',()=>{uniforms.uVidRes.value.set(vid.videoWidth||16,vid.videoHeight||9);size();});
+        void main(){
+          vec2 uv=v;
+          // scroll-driven flow: direction + speed + zoom morph through the journey
+          float flow=uTime*(0.15+uScroll*0.7) + uVel*1.2;
+          float dir=uScroll*3.14159;                 // flow direction rotates as you scroll
+          vec2 fdir=vec2(cos(dir),sin(dir));
+          float turb=0.25+uScroll*0.9+uVel*0.6;       // calm -> turbulent power-jet -> settle
+          float zoom=1.0+sin(uScroll*3.14159)*0.25;   // breathe in through chapters
+          vec2 cuv=(uv-0.5)*zoom+0.5 + fdir*flow*0.03;
+          // mouse ripple
+          float md=distance(uv,uMouse); cuv += normalize(uv-uMouse+1e-4)*exp(-md*7.0)*0.02;
+          float ca=caustic(cuv,flow,turb);
+          // base water colour: deep navy with turquoise caustic light
+          vec3 base=mix(uNavy*0.25, uNavy, smoothstep(0.0,0.6,ca));
+          base+=uAqua*pow(ca,1.5)*(0.7+uScroll*0.5);
+          base+=uAqua*0.12*smoothstep(0.4,1.0,caustic(cuv*1.7+9.0,flow*1.3,turb));
+          // volumetric light rays from top
+          base+=vec3(0.5,0.7,0.9)*pow(max(0.0,1.0-distance(uv,vec2(0.5,0.0))),3.0)*0.12;
 
-    if(REDUCED){canvas.style.display='none';
-      vid.addEventListener('loadeddata',()=>{vid.play().then(()=>{vid.pause();vid.currentTime=vid.duration*0.5;}).catch(()=>{});
-        const c=document.createElement('canvas');c.width=vid.videoWidth;c.height=vid.videoHeight;
-        vid.addEventListener('seeked',()=>{try{c.getContext('2d').drawImage(vid,0,0);posterEl.src=c.toDataURL('image/jpeg',0.85);posterEl.style.display='block';}catch(e){}},{once:true});},{once:true});
-    } else {
-      gsap.registerPlugin(ScrollTrigger);
-      const lenis=new Lenis({lerp:0.09,smoothWheel:true});window.__lenis=lenis;
-      lenis.on('scroll',ScrollTrigger.update);gsap.ticker.add((t)=>lenis.raf(t*1000));gsap.ticker.lagSmoothing(0);
-      lenis.on('scroll',e=>{document.getElementById('nav').classList.toggle('solid',(e.scroll||0)>40);});
-      let vel=0;const playTry=()=>{const p=vid.play();if(p)p.catch(()=>{});};
-      playTry();vid.addEventListener('loadeddata',playTry,{once:true});
-      addEventListener('pointerdown',playTry,{once:true});addEventListener('touchstart',playTry,{once:true});
-      ScrollTrigger.create({trigger:'main',start:'top top',end:'bottom bottom',scrub:true,
-        onUpdate:(self)=>{vel=Math.min(Math.abs(self.getVelocity())/3000,2.0);uniforms.uScroll.value=self.progress;vid.playbackRate=1+vel*0.5;
-          document.getElementById('pct').textContent=String(Math.round(self.progress*100)).padStart(3,'0');
-          document.getElementById('cue').style.opacity=self.progress>0.02?0:0.8;}});
-      const clock=new THREE.Clock();let vS=0;
-      function loop(){uniforms.uTime.value+=clock.getDelta();vS+=(vel-vS)*0.08;uniforms.uVel.value=vS;
-        if(vid.readyState>=2)tex.needsUpdate=true;render();requestAnimationFrame(loop);}
-      loop();
+          // ---- cinematic video layer (crossfade A->B), screened over the base ----
+          vec3 col=base;
+          if(uHasVid>0.5){
+            vec2 wa=cover(uv,uVA); vec2 wb=cover(uv,uVB);
+            float warp=0.006+uVel*0.02;
+            wa.x+=sin(wa.y*8.0+flow)*warp; wb.x+=sin(wb.y*8.0+flow)*warp;
+            vec3 va=texture2D(uA,wa).rgb, vb=texture2D(uB,wb).rgb;
+            vec3 vid=mix(va,vb,uMix);
+            vid=(vid-0.5)*1.12+0.5; vid*=1.08;                 // punch, but avoid white blow-out
+            vid+=pow(max(vec3(0.0),vid-0.6),vec3(2.0))*0.4;    // restrained glow on brightest water
+            // screen-blend video over caustic base so they fuse, video leads
+            col=1.0-(1.0-col)*(1.0-vid*0.92);
+            col=mix(base,col,0.85);
+          }
+          // grade + grain + scroll-dim for content legibility
+          col*=1.0 - uScroll*0.32;
+          col*=0.97+0.03*sin(v.y*uRes.y*1.1); col+=(hash(v*uRes+uTime)-0.5)*0.03;
+          float d=distance(v,vec2(0.5)); col*=smoothstep(1.25,0.6,d)*0.22+0.78;
+          gl_FragColor=vec4(col,1.0);
+        }`});
+    scene.add(new THREE.Mesh(new THREE.PlaneGeometry(2,2),mat));
+    size();addEventListener('resize',size);
+
+    // ---- scene crossfade manager (2 video elements, ping-pong, preload-ahead) ----
+    const slot={A:{el:vA,tex:texA,res:U.uVA,idx:-1},B:{el:vB,tex:texB,res:U.uVB,idx:-1}};
+    function load(s,idx){ if(s.idx===idx)return; s.idx=idx; s.el.src=SCENES[idx];
+      s.el.addEventListener('loadedmetadata',()=>s.res.value.set(s.el.videoWidth||16,s.el.videoHeight||9),{once:true});
+      const p=s.el.play(); if(p)p.catch(()=>{});
     }
-    const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting)en.target.classList.add('in');}),{threshold:0.16});
-    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-    addEventListener('load',()=>{document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',ev=>{const t=document.querySelector(a.getAttribute('href'));if(t){ev.preventDefault();(window.__lenis?window.__lenis.scrollTo(t):t.scrollIntoView({behavior:'smooth'}));closeMM();}}));});
-    const burger=document.getElementById('burger'),mm=document.getElementById('mm');
-    function closeMM(){burger.classList.remove('open');mm.classList.remove('open');}
-    burger.addEventListener('click',()=>{burger.classList.toggle('open');mm.classList.toggle('open');});
+    load(slot.A,0); load(slot.B,Math.min(1,NCH-1));
+    let curLo=0;
+    function setChapters(lo,hi,frac){
+      // ensure slot.A=scene[lo], slot.B=scene[hi]
+      if(slot.A.idx!==lo && slot.B.idx===lo){const t=slot.A;slot.A=slot.B;slot.B=t;U.uA.value=slot.A.tex;U.uB.value=slot.B.tex;U.uVA.value=slot.A.res.value;U.uVB.value=slot.B.res.value;}
+      if(slot.A.idx!==lo) load(slot.A,lo);
+      if(slot.B.idx!==hi) load(slot.B,hi);
+      U.uMix.value=frac;
+      const ready=slot.A.el.readyState>=2 && slot.B.el.readyState>=2;
+      U.uHasVid.value += ((ready?1:0)-U.uHasVid.value)*0.08;  // ease video in only when both ready (never black)
+    }
+
+    const chaps=[...document.querySelectorAll('.chap')];
+    const railLinks=[...document.querySelectorAll('.rail a')];
+    function activate(i){chaps.forEach((c,k)=>c.classList.toggle('on',k===i));railLinks.forEach((a,k)=>a.classList.toggle('on',k===i));
+      document.getElementById('chapname').textContent=['waterbenders','the method','the standard','every surface','royal albert','book'][i];}
+
+    let scrollP=0,vel=0;
+    if(REDUCED){activate(0);U.uHasVid.value=1;U.uMix.value=0;}
+    else{
+      gsap.registerPlugin(ScrollTrigger);
+      const lenis=new Lenis({lerp:0.08,smoothWheel:true});window.__lenis=lenis;
+      lenis.on('scroll',ScrollTrigger.update);gsap.ticker.add(t=>lenis.raf(t*1000));gsap.ticker.lagSmoothing(0);
+      ScrollTrigger.create({trigger:'#story',start:'top top',end:'bottom bottom',scrub:true,
+        onUpdate:s=>{scrollP=s.progress;vel=Math.min(Math.abs(s.getVelocity())/3000,2.0);
+          document.getElementById('prog').style.width=(s.progress*100)+'%';
+          document.getElementById('pctn').textContent=String(Math.round(s.progress*100)).padStart(2,'0');}});
+    }
+    addEventListener('pointermove',e=>{U.uMouse.value.set(e.clientX/innerWidth,1-e.clientY/innerHeight);});
+    railLinks.forEach(a=>a.addEventListener('click',()=>{const i=+a.dataset.go;const mx=document.documentElement.scrollHeight-innerHeight;window.__lenis&&window.__lenis.scrollTo((i/(NCH-1))*mx);}));
+
+    const clock=new THREE.Clock();let vS=0,curCh=-1;
+    function loop(){
+      U.uTime.value+=clock.getDelta(); vS+=(vel-vS)*0.08; U.uVel.value=vS; U.uScroll.value+=(scrollP-U.uScroll.value)*0.1;
+      const f=U.uScroll.value*(NCH-1); const lo=Math.min(Math.floor(f),NCH-2); const frac=f-lo;
+      setChapters(lo, lo+1, frac*frac*(3-2*frac));
+      if(slot.A.el.readyState>=2)texA.needsUpdate=true; if(slot.B.el.readyState>=2)texB.needsUpdate=true;
+      const ach=Math.round(f); if(ach!==curCh){curCh=ach;activate(ach);}
+      renderer.render(scene,cam);requestAnimationFrame(loop);
+    }
+    activate(0);loop();
   </script>
-  <div class="scrollcue" id="cue">scroll</div>
-  <div class="pct" id="pct">000</div>
 </body>
 </html>
