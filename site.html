@@ -84,6 +84,20 @@
   .srow2 h3{font-size:clamp(26px,4vw,52px);font-weight:800;font-family:"Montserrat";letter-spacing:-.02em;flex:0 0 auto}
   .srow2 p{font-size:14px;color:var(--mut);margin-left:auto;max-width:34ch;text-align:right}
   .srow2 .go{font-size:20px;color:var(--aqua);opacity:.5;transition:.3s}.srow2:hover .go{opacity:1;transform:translateX(4px)}
+  /* image-expansion on scroll */
+  .expand{height:210vh;position:relative}
+  .exp-sticky{position:sticky;top:0;height:100vh;display:grid;place-items:center;overflow:hidden}
+  .exp-frame{position:relative;width:var(--w,62%);max-width:1500px;aspect-ratio:16/9;border-radius:var(--r,20px);overflow:hidden;box-shadow:0 40px 120px -30px rgba(0,0,0,.75)}
+  .exp-frame img{width:100%;height:100%;object-fit:cover;display:block}
+  .exp-cap{position:absolute;left:0;right:0;bottom:0;padding:clamp(22px,4vw,56px);opacity:var(--capo,0);transition:opacity .4s;background:linear-gradient(0deg,rgba(6,16,31,.82),transparent)}
+  .exp-cap h2{font-size:clamp(28px,4.4vw,64px)}
+  /* portfolio gallery */
+  .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:38px;max-width:1150px}
+  .gallery a{overflow:hidden;border-radius:8px;display:block}
+  .gallery img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.16,1,.3,1)}
+  .gallery a:hover img{transform:scale(1.06)}
+  .gallery .wide{grid-column:span 2;aspect-ratio:16/9}
+  @media(max-width:760px){.gallery{grid-template-columns:1fr 1fr}.gallery .wide{grid-column:span 2}.exp-frame{--w:92%!important}}
   /* proof */
   .proofstrip{display:flex;gap:50px;flex-wrap:wrap;margin-top:30px}
   .pf .v{font-size:clamp(34px,4.4vw,60px);font-weight:800;letter-spacing:-.02em;background:linear-gradient(180deg,#fff,var(--aqua));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
@@ -169,6 +183,26 @@
         <a href="services/property-rejuvenations.html" class="svc rejuv reveal"><h4>Full property rejuvenations <i>↗</i></h4><span>Whole-exterior restoration, scoped and finished in one engagement.</span></a>
       </div>
       <div class="micro reveal" style="margin-top:26px">Tap any service to see exactly how it's done.</div>
+    </section>
+
+    <section class="expand" id="work">
+      <div class="exp-sticky"><div class="exp-frame" id="expf">
+        <img src="photos/kb39-1.jpg" alt="39 Knightsbridge Parade East, Sovereign Islands"/>
+        <div class="exp-cap"><span class="k" style="margin-bottom:8px">Recent work</span><h2>Sovereign Islands.<br>Every surface.</h2></div>
+      </div></div>
+    </section>
+
+    <section id="portfolio">
+      <span class="k reveal">The portfolio</span>
+      <h2 class="reveal">Homes we've brought back.</h2>
+      <div class="gallery reveal">
+        <a class="wide"><img src="photos/kb18-1.jpg" alt="18 Knightsbridge Parade East — waterfront"/></a>
+        <a><img src="photos/kb39-2.jpg" alt="39 Knightsbridge Parade East"/></a>
+        <a><img src="photos/kb39-4.jpg" alt="39 Knightsbridge Parade East"/></a>
+        <a><img src="photos/kb18-2.jpg" alt="18 Knightsbridge Parade East"/></a>
+        <a class="wide"><img src="photos/kb39-6.jpg" alt="39 Knightsbridge Parade East"/></a>
+      </div>
+      <div class="micro reveal" style="margin-top:24px">18 &amp; 39 Knightsbridge Parade East · Sovereign Islands, Gold Coast</div>
     </section>
 
     <section id="proof">
@@ -279,6 +313,10 @@
     const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting)en.target.classList.add('in');}),{threshold:0.16});document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
     document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',ev=>{const t=document.querySelector(a.getAttribute('href'));if(t){ev.preventDefault();lenis.scrollTo(t);closeMM();}}));
     addEventListener('load',measure);measure();setTimeout(measure,1300);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(measure);
+    // image-expansion on scroll
+    const expf=document.getElementById('expf'),workSec=document.getElementById('work');
+    function updExpand(){if(!expf||!workSec)return;const r=workSec.getBoundingClientRect();const p=Math.min(Math.max((-r.top)/(r.height-innerHeight),0),1);expf.style.setProperty('--w',(62+p*38)+'%');expf.style.setProperty('--r',(20*(1-p))+'px');expf.style.setProperty('--capo',p>0.55?1:0);}
+    lenis.on('scroll',updExpand);updExpand();
     const burger=document.getElementById('burger'),mm=document.getElementById('mm');function closeMM(){burger.classList.remove('open');mm.classList.remove('open');}
     burger.addEventListener('click',()=>{burger.classList.toggle('open');mm.classList.toggle('open');});
   </script>
