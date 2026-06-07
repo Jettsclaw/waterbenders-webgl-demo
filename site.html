@@ -69,6 +69,21 @@
   .svc.house::before{background:radial-gradient(120% 180% at 10% 50%,rgba(6,137,242,.24),transparent 55%)}.svc.house:hover::before{opacity:1}
   .svc.rejuv::before{background:radial-gradient(120% 180% at 12% 50%,rgba(120,210,255,.22),transparent 55%)}.svc.rejuv:hover::before{opacity:1}
 
+  /* water-in-text showpiece */
+  .wtsec{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:22px}
+  .wtsec .pre{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--aqua);font-weight:600}
+  .wtwrap{position:relative;width:min(92vw,1100px);aspect-ratio:1000/300}
+  .wtwrap video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .wtwrap svg{position:absolute;inset:0;width:100%;height:100%}
+  .wtsec .cap{font-size:clamp(14px,1.7vw,19px);color:#cdd8ee;font-weight:300;letter-spacing:.02em;max-width:40ch}
+  /* editorial 'by introduction' rows */
+  .serverows{margin-top:36px;max-width:980px;border-top:1px solid var(--line)}
+  .srow2{display:flex;align-items:center;gap:28px;padding:34px 8px;border-bottom:1px solid var(--line);position:relative;transition:padding-left .4s,background .4s}
+  .srow2:hover{padding-left:24px;background:rgba(255,255,255,.02)}
+  .srow2 .n{font-size:13px;font-weight:700;font-family:"Montserrat";color:var(--aqua);width:34px}
+  .srow2 h3{font-size:clamp(26px,4vw,52px);font-weight:800;font-family:"Montserrat";letter-spacing:-.02em;flex:0 0 auto}
+  .srow2 p{font-size:14px;color:var(--mut);margin-left:auto;max-width:34ch;text-align:right}
+  .srow2 .go{font-size:20px;color:var(--aqua);opacity:.5;transition:.3s}.srow2:hover .go{opacity:1;transform:translateX(4px)}
   /* proof */
   .proofstrip{display:flex;gap:50px;flex-wrap:wrap;margin-top:30px}
   .pf .v{font-size:clamp(34px,4.4vw,60px);font-weight:800;letter-spacing:-.02em;background:linear-gradient(180deg,#fff,var(--aqua));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
@@ -106,6 +121,29 @@
       <p class="sub reveal">A low-pressure soft wash that kills mould and lichen at the root — tiles intact, warranty intact, clean for months not weeks. On the day we book, finished in one visit, or we come back free.</p>
       <div class="ctarow reveal"><a class="btn solid" href="#book">Book your Standard Assessment</a><a class="btn ghost" href="#proof">The Royal Albert Standard</a></div>
       <div class="micro reveal">Gold Coast &amp; Brisbane luxury exteriors · by introduction · zero unsatisfied clients</div>
+    </section>
+
+    <section class="wtsec">
+      <div class="pre reveal">The power of</div>
+      <div class="wtwrap reveal">
+        <video playsinline muted loop autoplay preload="auto" src="scenes/stream-arc.mp4"></video>
+        <svg viewBox="0 0 1000 300" preserveAspectRatio="xMidYMid meet">
+          <defs><mask id="wtm"><rect width="1000" height="300" fill="#fff"/><text x="500" y="232" text-anchor="middle" font-family="Montserrat,sans-serif" font-weight="900" font-size="300" fill="#000">CLEAN</text></mask></defs>
+          <rect width="1000" height="300" fill="#06101f" mask="url(#wtm)"/>
+          <text x="500" y="232" text-anchor="middle" font-family="Montserrat,sans-serif" font-weight="900" font-size="300" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="1.4">CLEAN</text>
+        </svg>
+      </div>
+      <div class="cap reveal">Not a claim — a method. Low pressure, root-kill, finished in one visit.</div>
+    </section>
+
+    <section id="serve">
+      <span class="k reveal">Who we work with</span>
+      <h2 class="reveal">By <span class="b">introduction</span>.</h2>
+      <div class="serverows">
+        <a class="srow2 reveal" href="#book"><span class="n">01</span><h3>Homeowners</h3><p>$3–15M Gold Coast properties. Hand over the keys, expect perfection.</p><span class="go">↗</span></a>
+        <a class="srow2 reveal" href="#book"><span class="n">02</span><h3>Sellers &amp; agents</h3><p>Vendor-ready in days, not weeks. The Royal Albert Standard, on your listing.</p><span class="go">↗</span></a>
+        <a class="srow2 reveal" href="#book"><span class="n">03</span><h3>Commercial</h3><p>Strata, facilities and estates — one accountable standard, on a schedule.</p><span class="go">↗</span></a>
+      </div>
     </section>
 
     <section id="standard">
