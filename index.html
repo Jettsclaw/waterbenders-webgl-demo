@@ -181,7 +181,7 @@
   <script type="module">
     import * as THREE from 'three';
     const REDUCED=matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const vid=document.getElementById('vid');vid.src="scenes/water-glass.mp4";
+    const vid=document.getElementById('vid');vid.src="scenes/stream-arc.mp4";
     const canvas=document.getElementById('scene'),posterEl=document.getElementById('poster'),stage=document.getElementById('stage');
     const renderer=new THREE.WebGLRenderer({canvas,antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));
     const scene=new THREE.Scene();const camera=new THREE.OrthographicCamera(-1,1,1,-1,0,1);
